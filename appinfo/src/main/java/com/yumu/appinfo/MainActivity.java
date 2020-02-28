@@ -1,18 +1,27 @@
 package com.yumu.appinfo;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.yumu.appinfo.bean.APPInfo;
+import com.yumu.appinfo.utils.StringUtil;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.security.MessageDigest;
@@ -26,11 +35,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView tvAppInfo, tvGetInfo, tvAppNum;
+    private TextView tvAppInfo, tvGetInfo, tvAppNum, tvSearch;
     private List<APPInfo> appInfoList;
     private List<APPInfo> sysInfoList;
     private RecyclerView recyclerview;
     private AppInfoAdapter appInfoAdapter;
+    private EditText etSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,21 +48,40 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         tvGetInfo = findViewById(R.id.tv_get_info);
         tvAppInfo = findViewById(R.id.tv_app_info);
+        tvSearch = findViewById(R.id.tv_search);
+        etSearch = findViewById(R.id.et_search);
+
+
         tvAppNum = findViewById(R.id.tv_app_num);
         recyclerview = findViewById(R.id.recyclerview);
         tvGetInfo.setOnClickListener(onClickListener);
+        tvSearch.setOnClickListener(onClickListener);
 
         appInfoList = new ArrayList<>();
         sysInfoList = new ArrayList<>();
-        setadapter();
-
+        setAdapter();
+        addViewAction();
     }
 
 
-    public void setadapter() {
+    public void setAdapter() {
         appInfoAdapter = new AppInfoAdapter(getApplicationContext());
         recyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerview.setAdapter(appInfoAdapter);
+    }
+
+    public void addViewAction() {
+        etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH || actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_GO) {
+                    searchApps();
+                    return true;
+                }
+                return false;
+            }
+        });
+
     }
 
 
@@ -60,14 +89,51 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             if (view.getId() == R.id.tv_get_info) {
-                getPackages();
+                getAppInfos();
+            } else if (view.getId() == R.id.tv_search) {
+                searchApps();
             }
         }
     };
 
-    private void getPackages() {
+
+    public void searchApps() {
+
+        InputMethodManager mInputManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        mInputManager.hideSoftInputFromWindow(etSearch.getWindowToken(), 0);
+
+        if (appInfoList.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "先获取一下应用信息啊", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String searchKey = etSearch.getText().toString();
+
+        if (StringUtil.isEmpty(searchKey)) {
+            Toast.makeText(getApplicationContext(), "输入一下包名或者App名字啊", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        int currentPosition = -1;
+
+        for (APPInfo appinfo : appInfoList) {
+            if (searchKey.equals(appinfo.getAppName()) || searchKey.equals(appinfo.getPackageName())) {
+                currentPosition = appInfoList.indexOf(appinfo);
+                Log.d("snn", "  currentPosition " + currentPosition);
+            }
+        }
+
+        if (currentPosition != -1) {
+            recyclerview.scrollToPosition(currentPosition);
+        }
+    }
+
+    /**
+     * 获取app信息
+     */
+    private void getAppInfos() {
         appInfoList.clear();
-        int num = 0;
+//        int num = 0;
         StringBuilder stringBuilder = new StringBuilder();
         // 获取已经安装的所有应用, PackageInfo　系统类，包含应用信息
         List<PackageInfo> packages = getPackageManager().getInstalledPackages(0);

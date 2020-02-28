@@ -33,6 +33,25 @@ public class StringUtil {
         }
     }
 
+    /**
+     * if string is empty
+     *
+     * @param input
+     * @return boolean
+     */
+    public static boolean isEmpty(String input) {
+        if (input == null || "".equals(input))
+            return true;
+
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if (c != ' ' && c != '\t' && c != '\r' && c != '\n') {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static String getPasteString(Context context) {
         android.content.ClipboardManager clip = (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         //GET贴板是否有内容
