@@ -1,0 +1,3 @@
+Key alias:appinfo
+密码: appinfo
+都是：appinfo

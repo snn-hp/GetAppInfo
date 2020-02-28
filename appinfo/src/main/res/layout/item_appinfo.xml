@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingBottom="15dp">
+
+
+    <TextView
+        android:id="@+id/tv_app_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="第 0 个" />
+
+    <TextView
+        android:id="@+id/tv_app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_app_position"
+        android:text="AppName:" />
+
+
+    <TextView
+        android:id="@+id/tv_app_name_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_app_position"
+        android:layout_toRightOf="@+id/tv_app_name" />
+
+
+    <TextView
+        android:id="@+id/tv_app_packagename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_app_name"
+        android:text="PackageName:" />
+
+    <TextView
+        android:id="@+id/tv_app_packagename_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_app_name"
+        android:layout_toRightOf="@+id/tv_app_packagename" />
+
+
+    <TextView
+        android:id="@+id/tv_app_version_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_app_packagename"
+        android:text="versionName:" />
+
+    <TextView
+        android:id="@+id/tv_app_version_name_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_app_packagename"
+        android:layout_toRightOf="@+id/tv_app_version_name" />
+
+
+    <TextView
+        android:id="@+id/tv_app_version_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_app_version_name"
+        android:text="versionCode:" />
+
+
+    <TextView
+        android:id="@+id/tv_app_version_code_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_app_version_name"
+        android:layout_toRightOf="@+id/tv_app_version_code" />
+
+
+    <TextView
+        android:id="@+id/tv_app_first_install_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_app_version_code"
+        android:text="首次安装时间：" />
+
+
+    <TextView
+        android:id="@+id/tv_app_first_install_time_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_app_version_code"
+        android:layout_toRightOf="@+id/tv_app_first_install_time" />
+
+    <TextView
+        android:id="@+id/tv_app_last_install_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_app_first_install_time"
+        android:text="最后更新时间：" />
+
+
+    <TextView
+        android:id="@+id/tv_app_last_install_time_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_app_first_install_time"
+        android:layout_toRightOf="@+id/tv_app_last_install_time" />
+
+
+    <TextView
+        android:id="@+id/tv_app_md5_signature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_app_last_install_time"
+        android:text="MD5签名信息：" />
+
+    <TextView
+        android:id="@+id/tv_app_md5_signature_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_app_md5_signature" />
+
+    <TextView
+        android:id="@+id/tv_app_sha1_signature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_app_md5_signature_value"
+        android:text="SHA1签名信息：" />
+
+
+    <TextView
+        android:id="@+id/tv_app_sha1_signature_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_app_sha1_signature" />
+
+    <TextView
+        android:id="@+id/tv_app_sha256_signature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_app_sha1_signature_value"
+        android:text="SHA256签名信息：" />
+
+    <TextView
+        android:id="@+id/tv_app_sha256_signature_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_app_sha256_signature" />
+
+
+</RelativeLayout>

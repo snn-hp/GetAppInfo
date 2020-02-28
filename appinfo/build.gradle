@@ -1,0 +1,51 @@
+apply plugin: 'com.android.application'
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.0"
+    defaultConfig {
+        applicationId "com.yumu.appinfo"
+        minSdkVersion 15
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    //点击「Run App」按钮时自动打包签名配置
+    signingConfigs {
+        debug {//debug签名配置
+            keyAlias 'appinfo'//密钥标示
+            keyPassword 'appinfo'//密钥密码
+            storePassword 'appinfo'//签名文件密码
+            storeFile file(getRootDir().getAbsolutePath() + '/jks/appinfo.jks')//签名文件路径 需要修改成自己本地的
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    //    debug/release
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = project.name + "_${variant.buildType.name}_${variant.versionName}_${variant.versionCode}_${releaseTime()}.apk"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+
+}
