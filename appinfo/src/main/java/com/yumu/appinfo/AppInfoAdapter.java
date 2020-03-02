@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.yumu.appinfo.bean.APPInfo;
-import com.yumu.appinfo.utils.StringUtil;
+import com.yumu.appinfo.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +59,7 @@ public class AppInfoAdapter extends RecyclerView.Adapter<AppInfoAdapter.ViewHold
         holder.tvAppSha256SignatureValue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StringUtil.copyString(context, holder.tvAppSha256SignatureValue.getText().toString());
+                Utils.copyString(context, holder.tvAppSha256SignatureValue.getText().toString());
                 Toast.makeText(context, "SHA256签名 已复制", Toast.LENGTH_SHORT).show();
             }
         });
@@ -67,7 +67,7 @@ public class AppInfoAdapter extends RecyclerView.Adapter<AppInfoAdapter.ViewHold
         holder.tvAppSha1SignatureValue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StringUtil.copyString(context, holder.tvAppSha1SignatureValue.getText().toString());
+                Utils.copyString(context, holder.tvAppSha1SignatureValue.getText().toString());
                 Toast.makeText(context, "SHA1签名 已复制", Toast.LENGTH_SHORT).show();
 
             }
@@ -75,7 +75,7 @@ public class AppInfoAdapter extends RecyclerView.Adapter<AppInfoAdapter.ViewHold
         holder.tvAppMd5SignatureValue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StringUtil.copyString(context, holder.tvAppMd5SignatureValue.getText().toString());
+                Utils.copyString(context, holder.tvAppMd5SignatureValue.getText().toString());
                 Toast.makeText(context, "MD5签名 已复制", Toast.LENGTH_SHORT).show();
 
             }
