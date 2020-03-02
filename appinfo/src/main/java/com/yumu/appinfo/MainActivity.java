@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         tvSearch = findViewById(R.id.tv_search);
         etSearch = findViewById(R.id.et_search);
 
-
         tvAppNum = findViewById(R.id.tv_app_num);
         recyclerview = findViewById(R.id.recyclerview);
         tvGetInfo.setOnClickListener(onClickListener);

@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_toLeftOf="@+id/tv_search"
-            android:hint="搜索应用名或这包名"
+            android:hint="搜索应用名或包名"
             android:imeOptions="actionSearch"
             android:singleLine="true"
             android:textSize="15sp" />
