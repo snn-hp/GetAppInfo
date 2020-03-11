@@ -1,4 +1,4 @@
-package com.yumu.appinfo;
+package com.yumu.appinfo.activity;
 
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
@@ -11,9 +11,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.yumu.appinfo.R;
+import com.yumu.appinfo.adapter.AppInfoAdapter;
 import com.yumu.appinfo.bean.APPInfo;
 import com.yumu.appinfo.utils.Utils;
 
@@ -21,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity {
+public class GetAppInfoActivity extends AppCompatActivity {
     private TextView tvAppInfo, tvGetInfo, tvAppNum, tvSearch;
     private List<APPInfo> appInfoList;
     private List<APPInfo> sysInfoList;
@@ -32,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_get_app_info);
         tvGetInfo = findViewById(R.id.tv_get_info);
         tvAppInfo = findViewById(R.id.tv_app_info);
         tvSearch = findViewById(R.id.tv_search);

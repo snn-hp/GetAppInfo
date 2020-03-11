@@ -1,4 +1,4 @@
-package com.yumu.appinfo;
+package com.yumu.appinfo.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.yumu.appinfo.R;
 import com.yumu.appinfo.bean.APPInfo;
 import com.yumu.appinfo.utils.Utils;
 import java.util.ArrayList;
