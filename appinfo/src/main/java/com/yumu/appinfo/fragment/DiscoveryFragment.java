@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
@@ -53,7 +52,6 @@ public class DiscoveryFragment extends BaseFragment {
         @Override
         public void onTabSelect(int position) {
             sendBroadcast(true);
-
         }
 
         @Override

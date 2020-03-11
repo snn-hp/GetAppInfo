@@ -35,7 +35,7 @@ public class HomeTabFragment extends BaseFragment {
     }
 
     boolean first = true;
-    boolean isSend = false;
+    boolean isShow = true;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -58,17 +58,17 @@ public class HomeTabFragment extends BaseFragment {
                         recyclerView.setPadding(0, 45 * 3, 0, 0);
                     }
 
-                    if (dy < 0 && isSend) {
+                    if (dy < 0 && isShow) {
                         // TODO: 2020-03-10 发送显示广播 保证同一个状态 广播只发送一次 避免浪费性能
                         Log.d("snn", "发送    显示      广播 111： ");
-                        sendBroadcast(false);
-                        isSend = false;
+                        sendBroadcast(true);
+                        isShow = true;
                     }
-                    if (dy > 0 && !isSend) {
+                    if (dy > 0 && !isShow) {
                         // TODO: 2020-03-10 发送隐藏广播
                         Log.d("snn", "发送        隐藏      广播222： ");
-                        sendBroadcast(true);
-                        isSend = true;
+                        sendBroadcast(false);
+                        isShow = false;
                     }
 
                     if (dy > 0 && recyclerView.getPaddingTop() != 0) {
