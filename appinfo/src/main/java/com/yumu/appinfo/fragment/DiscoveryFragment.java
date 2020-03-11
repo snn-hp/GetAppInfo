@@ -4,8 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewpager.widget.ViewPager;
+
 import com.flyco.tablayout.SlidingTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.google.android.material.appbar.AppBarLayout;
@@ -46,12 +49,22 @@ public class DiscoveryFragment extends BaseFragment {
         slidingTabLayout.setViewPager(viewpager);
         slidingTabLayout.setOnTabSelectListener(onTabSelectListener);
         viewpager.addOnPageChangeListener(onPageChangeListener);
+
+
+    }
+
+    public void expandAppBar() {
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) appbarlayout.getLayoutParams();
+        CoordinatorLayout.Behavior behavior = layoutParams.getBehavior();
+        AppBarLayout.Behavior appBehavior = (AppBarLayout.Behavior) behavior;
+        appBehavior.setTopAndBottomOffset(0);
     }
 
     OnTabSelectListener onTabSelectListener = new OnTabSelectListener() {
         @Override
         public void onTabSelect(int position) {
             sendBroadcast(true);
+            expandAppBar();
         }
 
         @Override
@@ -69,6 +82,7 @@ public class DiscoveryFragment extends BaseFragment {
         @Override
         public void onPageSelected(int position) {
             sendBroadcast(true);
+            expandAppBar();
 
         }
 

@@ -27,7 +27,7 @@ public class HomeTabFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View v = View.inflate(getContext(), R.layout.fragment_mail, null);
+        View v = View.inflate(getContext(), R.layout.fragment_tab, null);
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
         recyclerView.setAdapter(new Adapter());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -93,7 +93,7 @@ public class HomeTabFragment extends BaseFragment {
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new ViewHolder(View.inflate(parent.getContext(), R.layout.item_main, null));
+            return new ViewHolder(View.inflate(parent.getContext(), R.layout.item_adapter_tab, null));
         }
 
         @Override
