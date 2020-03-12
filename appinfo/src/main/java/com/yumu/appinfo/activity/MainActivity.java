@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.yumu.appinfo.R;
+import com.yumu.appinfo.utils.StatusBarHelper;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -22,8 +23,13 @@ public class MainActivity extends AppCompatActivity {
         tvGoBehavior = findViewById(R.id.tv_go_behavior);
 
         addViewAction();
+        initStatusBar();
     }
 
+    public void initStatusBar() {
+        StatusBarHelper.setStatusBarDarkMode(this); //白字
+        StatusBarHelper.setStatusBarColor(this, R.color.colorAccent, false);
+    }
 
     public void addViewAction() {
         tvGetInfo.setOnClickListener(onClickListener);

@@ -6,9 +6,7 @@ import android.view.MotionEvent;
 
 import androidx.viewpager.widget.ViewPager;
 
-/**
- * Created by wing on 11/4/16.
- */
+
 
 public class NoScrollViewPager extends ViewPager {
 

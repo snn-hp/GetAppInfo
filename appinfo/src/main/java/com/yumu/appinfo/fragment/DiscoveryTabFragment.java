@@ -12,10 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.yumu.appinfo.R;
 
 
-/**
- * Created by wing on 11/4/16.
- */
-
 public class DiscoveryTabFragment extends BaseFragment {
     private RecyclerView recyclerView;
 

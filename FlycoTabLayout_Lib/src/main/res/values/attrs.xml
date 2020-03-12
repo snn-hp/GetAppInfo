@@ -3,6 +3,8 @@
     <!-- indicator -->
     <!-- 设置显示器颜色 -->
     <attr name="tl_indicator_color" format="color"/>
+    <attr name="tl_indicator_start_color" format="color"/>
+    <attr name="tl_indicator_end_color" format="color"/>
     <!-- 设置显示器高度 -->
     <attr name="tl_indicator_height" format="dimension"/>
     <!-- 设置显示器固定宽度 -->
@@ -56,6 +58,8 @@
     <!-- tab -->
     <!-- 设置tab的paddingLeft和paddingRight -->
     <attr name="tl_tab_padding" format="dimension"/>
+    <attr name="tl_tab_padding_left" format="dimension"/>
+    <attr name="tl_tab_padding_right" format="dimension"/>
     <!-- 设置tab大小等分 -->
     <attr name="tl_tab_space_equal" format="boolean"/>
     <!-- 设置tab固定大小 -->

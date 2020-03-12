@@ -12,9 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.yumu.appinfo.R;
 
 
-/**
- * Created by wing on 11/4/16.
- */
+
 
 public class MailboxFragment extends Fragment {
     public static String NAME = "NAME";
