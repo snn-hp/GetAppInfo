@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -21,6 +20,7 @@ import com.yumu.appinfo.fragment.DiscoveryFragment;
 import com.yumu.appinfo.fragment.HomeFragment;
 import com.yumu.appinfo.fragment.MailboxFragment;
 import com.yumu.appinfo.fragment.PersonFragment;
+import com.yumu.appinfo.utils.StatusBarHelper;
 
 /**
  * Date :  2020-03-03.
@@ -28,7 +28,7 @@ import com.yumu.appinfo.fragment.PersonFragment;
  * Created by sunan.
  */
 public class TestBehaviorActivity extends AppCompatActivity {
-    private TextView tvHome, tvMailbox, tvPerson, tvDiscovery, tvUnRead;
+    private TextView tvHome, tvMailbox, tvPerson, tvDiscovery;
     private HomeFragment homeFragment;
     private DiscoveryFragment discoveryFragment;
     private MailboxFragment mailboxFragment;
@@ -41,6 +41,7 @@ public class TestBehaviorActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_behavior);
+        initStatusBar();
 
         tvHome = findViewById(R.id.tv_home);
         llbottom = findViewById(R.id.ll_bottom);
@@ -51,9 +52,20 @@ public class TestBehaviorActivity extends AppCompatActivity {
         tvDiscovery = findViewById(R.id.tv_discovery);
         tvMailbox = findViewById(R.id.tv_mailbox);
         tvPerson = findViewById(R.id.tv_person);
+
         registerReceiver();
         addViewAction();
     }
+
+
+    /**
+     * 为了美观，滑动的时候，内容需要填充到状态栏下，根据需要 可以自行设置 状态栏背景颜色 和 字体图标 以适配自己的app
+     */
+    public void initStatusBar() {
+        StatusBarHelper.setStatusBarLightMode(this); // 状态栏 黑字
+        StatusBarHelper.setStatusBarColor(this, android.R.color.transparent, true);
+    }
+
 
     protected void addViewAction() {
         tvHome.setOnClickListener(onTabClickListener);
@@ -171,7 +183,6 @@ public class TestBehaviorActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             boolean isShow = intent.getBooleanExtra("isShow", false);
             // TODO: 2020-03-10 根据值去判断 显示隐藏
-            Log.d("snn", "isShow " + isShow);
             if (isShow) {
                 showViewAnimation(llbottom);
             } else {

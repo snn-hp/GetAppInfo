@@ -1,7 +1,6 @@
 package com.yumu.appinfo.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ import com.yumu.appinfo.R;
  */
 
 public class DiscoveryTabFragment extends BaseFragment {
-    public static String NAME = "NAME";
     private RecyclerView recyclerView;
 
     @Nullable
@@ -51,13 +49,11 @@ public class DiscoveryTabFragment extends BaseFragment {
                 super.onScrolled(recyclerView, dx, dy);
                 if (dy < 0 && !isShow) {
                     // TODO: 2020-03-10 发送显示广播 保证同一个状态 广播只发送一次 避免浪费性能
-                    Log.d("snn", "发送    显示      广播 111： ");
                     sendBroadcast(true);
                     isShow = true;
                 }
                 if (dy > 0 && isShow) {
                     // TODO: 2020-03-10 发送隐藏广播
-                    Log.d("snn", "发送        隐藏      广播222： ");
                     sendBroadcast(false);
                     isShow = false;
                 }
@@ -65,10 +61,6 @@ public class DiscoveryTabFragment extends BaseFragment {
         });
     }
 
-
-    public RecyclerView getRecyclerView() {
-        return recyclerView;
-    }
 
     class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
