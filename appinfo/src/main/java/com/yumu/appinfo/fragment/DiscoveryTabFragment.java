@@ -17,7 +17,6 @@ import com.yumu.appinfo.R;
  */
 
 public class DiscoveryTabFragment extends BaseFragment {
-    public static String NAME = "NAME";
     private RecyclerView recyclerView;
 
     @Nullable
