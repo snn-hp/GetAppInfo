@@ -4,30 +4,25 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewpager.widget.ViewPager;
-
 import com.flyco.tablayout.SlidingTabLayout;
-import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.google.android.material.appbar.AppBarLayout;
 import com.yumu.appinfo.R;
 import com.yumu.appinfo.utils.DisplayHelper;
 import com.yumu.appinfo.utils.StatusBarHelper;
 import com.yumu.appinfo.views.ViewPagerAdapter;
 
-
 /**
- * Created by wing on 11/4/16.
+ * Date :  2020-03-03.
+ * Time :  14:53.
+ * Created by sunan.
  */
 
 public class DiscoveryFragment extends BaseFragment {
     protected SlidingTabLayout slidingTabLayout;
     protected ViewPager viewpager;
     protected ViewPagerAdapter mAdapter;
-    protected AppBarLayout appbarlayout;
-    private DiscoveryTabFragment discoveryTabFragment;
 
     @Nullable
     @Override
@@ -41,7 +36,6 @@ public class DiscoveryFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         slidingTabLayout = view.findViewById(R.id.slidingTabLayout);
         viewpager = view.findViewById(R.id.viewpager);
-        appbarlayout = view.findViewById(R.id.appbarlayout);
 
         mAdapter = new ViewPagerAdapter(getChildFragmentManager());
         addFragment(mAdapter);
@@ -49,8 +43,6 @@ public class DiscoveryFragment extends BaseFragment {
         viewpager.setAdapter(mAdapter);
         viewpager.setOffscreenPageLimit(4);
         slidingTabLayout.setViewPager(viewpager);
-        slidingTabLayout.setOnTabSelectListener(onTabSelectListener);
-        viewpager.addOnPageChangeListener(onPageChangeListener);
         initTabLayout();
     }
 
@@ -62,74 +54,27 @@ public class DiscoveryFragment extends BaseFragment {
      */
     public void initTabLayout() {
         // 设置 padding
-//        AppBarLayout.LayoutParams layoutParamsPadding = (AppBarLayout.LayoutParams) slidingTabLayout.getLayoutParams();
+//        LinearLayout.LayoutParams layoutParamsPadding = (LinearLayout.LayoutParams) slidingTabLayout.getLayoutParams();
 //        layoutParamsPadding.height = DisplayHelper.dp2px(getActivity(), 45) + StatusBarHelper.getStatusBarHeight(getActivity());
 //        layoutParamsPadding.width = ViewGroup.LayoutParams.WRAP_CONTENT;
 //        slidingTabLayout.setLayoutParams(layoutParamsPadding);
 //        slidingTabLayout.setPadding(0, StatusBarHelper.getStatusBarHeight(getActivity()), 0, 0);
 
         // 设置  Margins
-        AppBarLayout.LayoutParams layoutParamsMargins = (AppBarLayout.LayoutParams) slidingTabLayout.getLayoutParams();
+        LinearLayout.LayoutParams layoutParamsMargins = (LinearLayout.LayoutParams) slidingTabLayout.getLayoutParams();
         layoutParamsMargins.height = DisplayHelper.dp2px(getActivity(), 45);
         layoutParamsMargins.width = ViewGroup.LayoutParams.WRAP_CONTENT;
         layoutParamsMargins.setMargins(0, StatusBarHelper.getStatusBarHeight(getActivity()), 0, 0);
         slidingTabLayout.setLayoutParams(layoutParamsMargins);
     }
 
-    /**
-     * 恢复 appbarlayout
-     */
-    public void expandAppBar() {
-        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) appbarlayout.getLayoutParams();
-        CoordinatorLayout.Behavior behavior = layoutParams.getBehavior();
-        AppBarLayout.Behavior appBehavior = (AppBarLayout.Behavior) behavior;
-        appBehavior.setTopAndBottomOffset(0);
-    }
-
-    /**
-     * 恢复显示: 顶部和底部view,上拉过程中 隐藏view，期间左右滑动viewpager 恢复导航栏 和 tablayout
-     */
-    public void reSetView() {
-        sendBroadcast(true);
-        expandAppBar();
-    }
-
-    OnTabSelectListener onTabSelectListener = new OnTabSelectListener() {
-        @Override
-        public void onTabSelect(int position) {
-            reSetView();
-        }
-
-        @Override
-        public void onTabReselect(int position) {
-
-        }
-    };
-
-    ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-        }
-
-        @Override
-        public void onPageSelected(int position) {
-            reSetView();
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
-
-        }
-    };
 
     protected void addFragment(ViewPagerAdapter mAdapter) {
-        mAdapter.addFragment(discoveryTabFragment = new DiscoveryTabFragment(), "TAB1");
-        mAdapter.addFragment(discoveryTabFragment = new DiscoveryTabFragment(), "TAB2");
-        mAdapter.addFragment(discoveryTabFragment = new DiscoveryTabFragment(), "TAB3");
-        mAdapter.addFragment(discoveryTabFragment = new DiscoveryTabFragment(), "TAB4");
-        mAdapter.addFragment(discoveryTabFragment = new DiscoveryTabFragment(), "TAB5");
-        mAdapter.addFragment(discoveryTabFragment = new DiscoveryTabFragment(), "TAB6");
+        mAdapter.addFragment(new DiscoveryTabFragment(), "TAB1");
+        mAdapter.addFragment(new DiscoveryTabFragment(), "TAB2");
+        mAdapter.addFragment(new DiscoveryTabFragment(), "TAB3");
+        mAdapter.addFragment(new DiscoveryTabFragment(), "TAB4");
+        mAdapter.addFragment(new DiscoveryTabFragment(), "TAB5");
+        mAdapter.addFragment(new DiscoveryTabFragment(), "TAB6");
     }
-
 }

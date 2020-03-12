@@ -5,10 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.yumu.appinfo.R;
@@ -19,6 +17,7 @@ import com.yumu.appinfo.R;
  */
 
 public class DiscoveryTabFragment extends BaseFragment {
+    public static String NAME = "NAME";
     private RecyclerView recyclerView;
 
     @Nullable
@@ -28,39 +27,14 @@ public class DiscoveryTabFragment extends BaseFragment {
         View v = View.inflate(getContext(), R.layout.fragment_tab, null);
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
         recyclerView.setAdapter(new Adapter());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
         return v;
     }
-
-    boolean isShow = true;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                if (dy < 0 && !isShow) {
-                    // TODO: 2020-03-10 发送显示广播 保证同一个状态 广播只发送一次 避免浪费性能
-                    sendBroadcast(true);
-                    isShow = true;
-                }
-                if (dy > 0 && isShow) {
-                    // TODO: 2020-03-10 发送隐藏广播
-                    sendBroadcast(false);
-                    isShow = false;
-                }
-            }
-        });
     }
-
 
     class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
@@ -88,4 +62,5 @@ public class DiscoveryTabFragment extends BaseFragment {
             }
         }
     }
+
 }

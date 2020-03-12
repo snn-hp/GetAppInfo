@@ -1,41 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tl="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbarlayout"
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/slidingTabLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        app:elevation="0dp">
-
-        <com.flyco.tablayout.SlidingTabLayout
-            android:id="@+id/slidingTabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            app:layout_scrollFlags="scroll|enterAlways"
-            tl:tl_indicator_color="#333333"
-            tl:tl_indicator_height="3dp"
-            tl:tl_indicator_width="17dp"
-            tl:tl_textAllCaps="true"
-            tl:tl_textBold="BOTH"
-            tl:tl_textSelectColor="#333333"
-            tl:tl_textSelectsize="20sp"
-            tl:tl_textUnselectColor="#999999"
-            tl:tl_textUnselectsize="15sp"
-            tl:tl_textsize="20sp"
-            tl:tl_underline_height="0dp" />
-
-    </com.google.android.material.appbar.AppBarLayout>
+        android:layout_height="45dp"
+        tl:tl_indicator_color="#333333"
+        tl:tl_indicator_height="3dp"
+        tl:tl_indicator_width="17dp"
+        tl:tl_textAllCaps="true"
+        tl:tl_textBold="BOTH"
+        tl:tl_textSelectColor="#333333"
+        tl:tl_textSelectsize="20sp"
+        tl:tl_textUnselectColor="#999999"
+        tl:tl_textUnselectsize="15sp"
+        tl:tl_textsize="20sp"
+        tl:tl_underline_height="0dp" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_gravity="bottom" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

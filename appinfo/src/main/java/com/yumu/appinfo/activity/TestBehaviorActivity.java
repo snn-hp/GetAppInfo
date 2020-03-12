@@ -16,8 +16,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.yumu.appinfo.R;
-import com.yumu.appinfo.fragment.DiscoveryFragment;
 import com.yumu.appinfo.fragment.HomeFragment;
+import com.yumu.appinfo.fragment.DiscoveryFragment;
 import com.yumu.appinfo.fragment.MailboxFragment;
 import com.yumu.appinfo.fragment.PersonFragment;
 import com.yumu.appinfo.utils.StatusBarHelper;
@@ -29,8 +29,8 @@ import com.yumu.appinfo.utils.StatusBarHelper;
  */
 public class TestBehaviorActivity extends AppCompatActivity {
     private TextView tvHome, tvMailbox, tvPerson, tvDiscovery;
-    private HomeFragment homeFragment;
     private DiscoveryFragment discoveryFragment;
+    private HomeFragment homeFragment;
     private MailboxFragment mailboxFragment;
     private PersonFragment personFragment;
     private View llbottom;

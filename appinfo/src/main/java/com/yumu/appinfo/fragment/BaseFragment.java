@@ -17,9 +17,6 @@ import com.yumu.appinfo.R;
 import com.yumu.appinfo.views.ViewPagerAdapter;
 
 
-/**
- * Created by wing on 11/4/16.
- */
 
 public class BaseFragment extends Fragment {
 
