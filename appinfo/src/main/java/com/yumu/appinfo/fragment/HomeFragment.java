@@ -85,7 +85,7 @@ public class HomeFragment extends BaseFragment {
     /**
      * 恢复显示: 顶部和底部view,上拉过程中 隐藏view，期间左右滑动viewpager 恢复导航栏 和 tablayout
      */
-    public void reSetView() {
+    public void resetView() {
         sendBroadcast(true);
         expandAppBar();
     }
@@ -93,7 +93,7 @@ public class HomeFragment extends BaseFragment {
     OnTabSelectListener onTabSelectListener = new OnTabSelectListener() {
         @Override
         public void onTabSelect(int position) {
-            reSetView();
+            resetView();
         }
 
         @Override
@@ -110,7 +110,7 @@ public class HomeFragment extends BaseFragment {
 
         @Override
         public void onPageSelected(int position) {
-            reSetView();
+            resetView();
         }
 
         @Override
