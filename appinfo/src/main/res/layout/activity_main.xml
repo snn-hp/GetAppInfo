@@ -29,7 +29,7 @@
         android:text="获取应用信息"
         android:textColor="#ffffff" />
 
-    <TextView
+       <TextView
         android:id="@+id/tv_go_behavior"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,9 +37,19 @@
         android:layout_marginTop="30dp"
         android:background="@color/colorAccent"
         android:padding="15dp"
-        android:text="goToTestBehaviorActivity"
+        android:text="TestBehaviorActivity"
         android:textColor="#ffffff" />
 
+    <TextView
+        android:id="@+id/tv_go_viewpager2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:background="@color/colorAccent"
+        android:padding="15dp"
+        android:text="TestViewPager2"
+        android:textColor="#ffffff" />
 
     <LinearLayout
         android:layout_width="match_parent"

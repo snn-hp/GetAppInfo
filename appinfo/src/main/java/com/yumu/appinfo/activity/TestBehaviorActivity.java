@@ -34,7 +34,7 @@ public class TestBehaviorActivity extends AppCompatActivity {
     private MailboxFragment mailboxFragment;
     private PersonFragment personFragment;
     private View llbottom;
-    private int currentId = R.id.tv_home;//当前选中id,默认是行情
+    private int currentId = R.id.tv_home;//当前选中id
     public final static String BROADCAST_ACTION_LIST_MOVE_ACTION = "action.list.action";
 
     @Override
@@ -55,6 +55,15 @@ public class TestBehaviorActivity extends AppCompatActivity {
 
         registerReceiver();
         addViewAction();
+
+        Intent intent = getIntent();
+        int currentTab = intent.getIntExtra("currentTab", -1);
+
+        if (currentTab == 0) {
+            changeFragment(tvHome);
+        } else if (currentTab == 1) {
+            changeFragment(tvDiscovery);
+        }
     }
 
 
