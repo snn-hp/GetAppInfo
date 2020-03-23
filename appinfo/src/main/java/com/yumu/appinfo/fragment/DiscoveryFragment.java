@@ -6,12 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
-import androidx.viewpager.widget.ViewPager;
-import com.flyco.tablayout.SlidingTabLayout;
+import androidx.viewpager2.widget.ViewPager2;
+import com.flyco.tablayout.SlidingTabLayout2;
 import com.yumu.appinfo.R;
 import com.yumu.appinfo.utils.DisplayHelper;
 import com.yumu.appinfo.utils.StatusBarHelper;
-import com.yumu.appinfo.views.ViewPagerAdapter;
+import com.yumu.appinfo.views.ViewPager2Adapter;
 
 /**
  * Date :  2020-03-03.
@@ -20,9 +20,10 @@ import com.yumu.appinfo.views.ViewPagerAdapter;
  */
 
 public class DiscoveryFragment extends BaseFragment {
-    protected SlidingTabLayout slidingTabLayout;
-    protected ViewPager viewpager;
-    protected ViewPagerAdapter mAdapter;
+    protected SlidingTabLayout2 slidingTabLayout;
+    protected ViewPager2 viewPager2;
+    protected ViewPager2Adapter pager2Adapter;
+    private String[] titles = {"TAB1", "TAB2", "TAB3", "TAB4", "TAB5", "TAB6"};
 
     @Nullable
     @Override
@@ -35,14 +36,11 @@ public class DiscoveryFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         slidingTabLayout = view.findViewById(R.id.slidingTabLayout);
-        viewpager = view.findViewById(R.id.viewpager);
-
-        mAdapter = new ViewPagerAdapter(getChildFragmentManager());
-        addFragment(mAdapter);
-
-        viewpager.setAdapter(mAdapter);
-        viewpager.setOffscreenPageLimit(4);
-        slidingTabLayout.setViewPager(viewpager);
+        viewPager2 = view.findViewById(R.id.viewPager2);
+        pager2Adapter = new ViewPager2Adapter(getActivity());
+        addFragment2(pager2Adapter);
+        viewPager2.setAdapter(pager2Adapter);
+        slidingTabLayout.setViewPager(viewPager2, titles);
         initTabLayout();
     }
 
@@ -68,13 +66,13 @@ public class DiscoveryFragment extends BaseFragment {
         slidingTabLayout.setLayoutParams(layoutParamsMargins);
     }
 
-
-    protected void addFragment(ViewPagerAdapter mAdapter) {
-        mAdapter.addFragment(new DiscoveryTabFragment(), "TAB1");
-        mAdapter.addFragment(new DiscoveryTabFragment(), "TAB2");
-        mAdapter.addFragment(new DiscoveryTabFragment(), "TAB3");
-        mAdapter.addFragment(new DiscoveryTabFragment(), "TAB4");
-        mAdapter.addFragment(new DiscoveryTabFragment(), "TAB5");
-        mAdapter.addFragment(new DiscoveryTabFragment(), "TAB6");
+    protected void addFragment2(ViewPager2Adapter pager2Adapter) {
+        pager2Adapter.addFragment(new DiscoveryTabFragment());
+        pager2Adapter.addFragment(new DiscoveryTabFragment());
+        pager2Adapter.addFragment(new DiscoveryTabFragment());
+        pager2Adapter.addFragment(new DiscoveryTabFragment());
+        pager2Adapter.addFragment(new DiscoveryTabFragment());
+        pager2Adapter.addFragment(new DiscoveryTabFragment());
     }
+
 }

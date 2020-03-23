@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context=".activity.MainActivity">
+
+    <TextView
+        android:id="@+id/tv_app_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="@string/app_name"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_get_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:background="@color/colorAccent"
+        android:padding="15dp"
+        android:text="获取应用信息"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/tv_go_behavior"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:background="@color/colorAccent"
+        android:padding="15dp"
+        android:text="goToTestBehaviorActivity"
+        android:textColor="#ffffff" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_go_behavior"
         android:layout_marginTop="30dp"
         android:background="@color/colorAccent"
         android:gravity="center_horizontal"
@@ -35,42 +70,4 @@
             android:textColor="#ffffff"
             android:textSize="20sp" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_go_behavior"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_get_info"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:background="@color/colorAccent"
-        android:padding="15dp"
-        android:text="goToTestBehaviorActivity"
-        android:textColor="#ffffff" />
-
-
-    <TextView
-        android:id="@+id/tv_app_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/colorAccent"
-        android:gravity="center"
-        android:padding="15dp"
-        android:text="@string/app_name"
-        android:textColor="#ffffff" />
-
-    <TextView
-        android:id="@+id/tv_get_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_app_name"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:background="@color/colorAccent"
-        android:padding="15dp"
-        android:text="获取应用信息"
-        android:textColor="#ffffff" />
-
-
-</RelativeLayout>
+</LinearLayout>

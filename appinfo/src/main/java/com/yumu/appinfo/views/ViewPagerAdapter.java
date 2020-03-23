@@ -18,8 +18,8 @@ import java.util.Map;
 
 /**
  * ViewPager适配器
- * @author ansen
- * @create time 2016/05/18
+ * @author sunan
+ * @create time 2020/03/18
  */
 public class ViewPagerAdapter extends FragmentPagerAdapter {
     private final List<Fragment> fragmentList = new ArrayList<Fragment>();
@@ -46,7 +46,6 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-//        MLog.i(Const.ANSEN,"标题内容:"+fragmentTitleList.get(position));
         return fragmentTitleList.get(position);
     }
 
