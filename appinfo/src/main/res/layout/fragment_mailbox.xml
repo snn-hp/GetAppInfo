@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <com.yumu.appinfo.views.LuckyDrawView
+        android:id="@+id/lucky_panel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tv_action_border"
+        android:layout_marginTop="50dp" />
+
+    <TextView
+        android:id="@+id/tv_action_border"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:layout_toRightOf="@+id/tv_action_all"
+        android:background="@color/colorAccent"
+        android:padding="10dp"
+        android:text="翻转全部"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        android:visibility="visible" />
+
+
+    <TextView
+        android:id="@+id/tv_action_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@color/colorAccent"
+        android:padding="10dp"
+        android:text="点击开始"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        android:visibility="visible" />
+
+
+    <TextView
+        android:id="@+id/tv_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
+        android:layout_toRightOf="@+id/tv_action_border"
+        android:background="@color/colorAccent"
+        android:padding="10dp"
+        android:text="重置"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        android:visibility="visible" />
+
+</RelativeLayout>

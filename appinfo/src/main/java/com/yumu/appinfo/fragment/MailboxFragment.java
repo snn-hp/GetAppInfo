@@ -1,101 +1,67 @@
 package com.yumu.appinfo.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.AnimationUtils;
-import android.view.animation.ScaleAnimation;
-import android.view.animation.TranslateAnimation;
-import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.yumu.appinfo.R;
-import com.yumu.appinfo.utils.DisplayHelper;
-import com.yumu.appinfo.utils.StatusBarHelper;
+import com.yumu.appinfo.views.LuckyDrawView;
+
+import java.util.Random;
 
 
-public class MailboxFragment extends Fragment {
+public class MailboxFragment extends Fragment implements View.OnClickListener {
 
-    private EditText etSendMsg;
-    private TextView tv_anim_view;
+    private TextView tv_action_all, tv_action_border, tv_reset;
+    private LuckyDrawView luckyDrawView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = View.inflate(getContext(), R.layout.fragment_holder, null);
+        View v = View.inflate(getContext(), R.layout.fragment_mailbox, null);
         return v;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        tv_anim_view = view.findViewById(R.id.tv_anim_view);
-        etSendMsg = view.findViewById(R.id.et_sendmsg);
+        tv_action_all = view.findViewById(R.id.tv_action_all);
+        tv_action_border = view.findViewById(R.id.tv_action_border);
+        luckyDrawView = view.findViewById(R.id.lucky_panel);
+        tv_reset = view.findViewById(R.id.tv_reset);
         addViewAction();
     }
 
     private void addViewAction() {
-        etSendMsg.setOnEditorActionListener(onEditorActionListener);
+        tv_action_border.setOnClickListener(this);
+        tv_action_all.setOnClickListener(this);
+        tv_reset.setOnClickListener(this);
     }
 
-    TextView.OnEditorActionListener onEditorActionListener = new TextView.OnEditorActionListener() {
-        @Override
-        public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-            if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_NEXT || actionId == EditorInfo.IME_ACTION_SEND || actionId == EditorInfo.IME_ACTION_GO) {
-                //todo 触发动画
-                startViewAnim(tv_anim_view);
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.tv_action_all) {
+            if (!luckyDrawView.isGameRunning()) {
+                luckyDrawView.startGame();
+                int stayIndex = new Random().nextInt(6);//随机数
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        luckyDrawView.tryToStop(stayIndex);//停止的时候的索引
+                    }
+                }, 5000);
             }
-            return false;
+        } else if (view.getId() == R.id.tv_action_border) {
+            luckyDrawView.startReversal();
+        } else if (view.getId() == R.id.tv_reset) {
+            luckyDrawView.resetAdapter();
         }
-    };
-
-
-    public void startViewAnim(View view) {
-        //动画集合
-        AnimationSet animationSet = new AnimationSet(true);
-        animationSet.setDuration(2000);
-
-        //平移动画
-        TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, -StatusBarHelper.getScreenHeight(getActivity()) / 2);
-        translateAnimation.setDuration(2000);
-//        view.startAnimation(translateAnimation);
-        animationSet.addAnimation(translateAnimation);
-
-        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.scale_anim);
-        animationSet.addAnimation(animation);
-        //缩放动画
-//        ScaleAnimation scalanimation = new ScaleAnimation(1, 1, 0, 1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-//        animation.setDuration(2000);
-////        view.startAnimation(animationSet);
-//        animationSet.addAnimation(scalanimation);
-
-        view.startAnimation(animationSet);
-
-        animationSet.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-                view.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                view.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
     }
 
 }

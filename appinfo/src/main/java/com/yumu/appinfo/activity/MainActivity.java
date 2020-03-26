@@ -5,13 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.yumu.appinfo.R;
 import com.yumu.appinfo.utils.StatusBarHelper;
 
 
 public class MainActivity extends AppCompatActivity {
-    private TextView tvGoBehavior, tvGetInfo, tvGoViewPager2;
+    private TextView tvGoBehavior, tvGetInfo, tvGoViewPager2, tv_go_cardview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         tvGetInfo = findViewById(R.id.tv_get_info);
         tvGoBehavior = findViewById(R.id.tv_go_behavior);
         tvGoViewPager2 = findViewById(R.id.tv_go_viewpager2);
+        tv_go_cardview = findViewById(R.id.tv_go_cardview);
 
         addViewAction();
         initStatusBar();
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         tvGetInfo.setOnClickListener(onClickListener);
         tvGoBehavior.setOnClickListener(onClickListener);
         tvGoViewPager2.setOnClickListener(onClickListener);
+        tv_go_cardview.setOnClickListener(onClickListener);
     }
 
 
@@ -46,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
                 gotoActivity(TestBehaviorActivity.class, 0);
             } else if (view.getId() == R.id.tv_go_viewpager2) {
                 gotoActivity(TestBehaviorActivity.class, 1);
+            } else if (view.getId() == R.id.tv_go_cardview) {
+                gotoActivity(TestBehaviorActivity.class, 2);
             }
         }
     };

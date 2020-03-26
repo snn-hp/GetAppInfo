@@ -17,6 +17,7 @@
 package com.yumu.appinfo.utils;
 
 import android.content.Context;
+import android.content.res.Resources;
 
 /**
  * @author cginechen
@@ -28,6 +29,10 @@ public class DisplayHelper {
             return 1;
         }
         return context.getResources().getDisplayMetrics().density;
+    }
+
+    public static int getWidthPixels() {
+        return Resources.getSystem().getDisplayMetrics().widthPixels;
     }
 
     /**

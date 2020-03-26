@@ -51,6 +51,21 @@
         android:text="TestViewPager2"
         android:textColor="#ffffff" />
 
+
+    <TextView
+        android:id="@+id/tv_go_cardview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:background="@color/colorAccent"
+        android:padding="15dp"
+        android:text="TestCardView"
+        android:textColor="#ffffff" />
+
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
