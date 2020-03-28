@@ -1,9 +1,10 @@
 package com.yumu.appinfo.views;
 
 /**
- * Created by apple on 2017/4/22.
+ * Date :  2020-03-28.
+ * Time :  15:39.
+ * Created by sunan.
  */
-
 public interface CustomerCallback {
     void customerCallback(int status);
 }

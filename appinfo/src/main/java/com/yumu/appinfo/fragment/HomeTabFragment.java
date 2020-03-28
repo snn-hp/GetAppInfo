@@ -14,7 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.yumu.appinfo.R;
 
 
-
+/**
+ * Date :  2020-03-28.
+ * Time :  15:39.
+ * Created by sunan.
+ */
 public class HomeTabFragment extends BaseFragment {
     private RecyclerView recyclerView;
 

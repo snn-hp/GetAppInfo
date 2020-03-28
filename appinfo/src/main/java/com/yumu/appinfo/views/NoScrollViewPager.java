@@ -7,7 +7,11 @@ import android.view.MotionEvent;
 import androidx.viewpager.widget.ViewPager;
 
 
-
+/**
+ * Date :  2020-03-28.
+ * Time :  15:39.
+ * Created by sunan.
+ */
 public class NoScrollViewPager extends ViewPager {
 
     private boolean isPagingEnabled = false;

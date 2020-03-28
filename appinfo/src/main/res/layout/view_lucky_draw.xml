@@ -1,11 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.yumu.appinfo.views.LuckyDrawCardItemView
+                android:id="@+id/item1"
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1" />
+
+            <com.yumu.appinfo.views.LuckyDrawCardItemView
+                android:id="@+id/item2"
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1" />
+
+            <com.yumu.appinfo.views.LuckyDrawCardItemView
+                android:id="@+id/item3"
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <com.yumu.appinfo.views.LuckyDrawCardItemView
+                android:id="@+id/item4"
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1" />
+
+            <com.yumu.appinfo.views.LuckyDrawCardItemView
+                android:id="@+id/item5"
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1" />
+
+            <com.yumu.appinfo.views.LuckyDrawCardItemView
+                android:id="@+id/item6"
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>

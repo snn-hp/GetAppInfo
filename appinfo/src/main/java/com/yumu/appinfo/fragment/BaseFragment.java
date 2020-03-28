@@ -17,7 +17,11 @@ import com.yumu.appinfo.R;
 import com.yumu.appinfo.views.ViewPagerAdapter;
 
 
-
+/**
+ * Date :  2020-03-28.
+ * Time :  15:39.
+ * Created by sunan.
+ */
 public class BaseFragment extends Fragment {
 
     public void sendBroadcast(boolean isShow) {

@@ -7,19 +7,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.yumu.appinfo.R;
+import com.yumu.appinfo.adapter.CirculationViewAdapter;
+import com.yumu.appinfo.views.CustomLinerLayoutManager;
 import com.yumu.appinfo.views.LuckyDrawView;
 
 import java.util.Random;
 
-
+/**
+ * Date :  2020-03-28.
+ * Time :  15:39.
+ * Created by sunan.
+ */
 public class MailboxFragment extends Fragment implements View.OnClickListener {
-
-    private TextView tv_action_all, tv_action_border, tv_reset;
-    private LuckyDrawView luckyDrawView;
+    private CirculationViewAdapter adapterOne, adapterTwo, adapterThree;
+    private RecyclerView recyclerViewOne, recyclerViewTwo, recyclerViewThree;
 
     @Nullable
     @Override
@@ -31,37 +39,74 @@ public class MailboxFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        tv_action_all = view.findViewById(R.id.tv_action_all);
-        tv_action_border = view.findViewById(R.id.tv_action_border);
-        luckyDrawView = view.findViewById(R.id.lucky_panel);
-        tv_reset = view.findViewById(R.id.tv_reset);
+        recyclerViewOne = view.findViewById(R.id.recyclerViewOne);
+        recyclerViewTwo = view.findViewById(R.id.recyclerViewTwo);
+        recyclerViewThree = view.findViewById(R.id.recyclerViewThree);
+        initRecyclerView();
         addViewAction();
     }
 
+    public void initRecyclerView() {
+
+        // x 正方向 循环滚动
+        CustomLinerLayoutManager layoutManagerOne = new CustomLinerLayoutManager(getActivity());
+        layoutManagerOne.setSpeedSlow();
+        layoutManagerOne.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerViewOne.setLayoutManager(layoutManagerOne);
+        recyclerViewOne.setAdapter(adapterOne = new CirculationViewAdapter(getActivity(), 1));
+
+        // x 负方向 循环滚动
+        CustomLinerLayoutManager layoutManagerTwo = new CustomLinerLayoutManager(getActivity());
+        layoutManagerTwo.setSpeedSlow();
+        layoutManagerTwo.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerViewTwo.setLayoutManager(layoutManagerTwo);
+        recyclerViewTwo.setAdapter(adapterTwo = new CirculationViewAdapter(getActivity(), 2));
+
+        //  x 正方向 无限滚动
+        CustomLinerLayoutManager layoutManagerThree = new CustomLinerLayoutManager(getActivity());
+        layoutManagerThree.setSpeedSlow();
+        layoutManagerThree.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerViewThree.setLayoutManager(layoutManagerThree);
+        recyclerViewThree.setAdapter(adapterThree = new CirculationViewAdapter(getActivity(), 3));
+        recyclerViewThree.smoothScrollToPosition(Integer.MAX_VALUE / 2);
+
+    }
+
+
     private void addViewAction() {
-        tv_action_border.setOnClickListener(this);
-        tv_action_all.setOnClickListener(this);
-        tv_reset.setOnClickListener(this);
+        recyclerViewTwo.scrollToPosition(14);
+        recyclerViewOne.addOnScrollListener(onScrollListenerOne);
+        recyclerViewTwo.addOnScrollListener(onScrollListenerTwo);
+    }
+
+    RecyclerView.OnScrollListener onScrollListenerOne = new RecyclerView.OnScrollListener() {
+        @Override
+        public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+            isVisBottom(recyclerView);
+        }
+    };
+
+    RecyclerView.OnScrollListener onScrollListenerTwo = new RecyclerView.OnScrollListener() {
+        @Override
+        public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+            isVisBottom(recyclerView);
+        }
+    };
+
+    public void isVisBottom(RecyclerView recyclerView) {
+        LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+        if (!recyclerView.canScrollHorizontally(-1)) {//当前在顶部
+            recyclerView.smoothScrollToPosition(linearLayoutManager.getItemCount() - 1);
+        }
+        if (!recyclerView.canScrollHorizontally(1)) {//当前在底部
+            recyclerView.smoothScrollToPosition(0);
+        }
     }
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.tv_action_all) {
-            if (!luckyDrawView.isGameRunning()) {
-                luckyDrawView.startGame();
-                int stayIndex = new Random().nextInt(6);//随机数
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        luckyDrawView.tryToStop(stayIndex);//停止的时候的索引
-                    }
-                }, 5000);
-            }
-        } else if (view.getId() == R.id.tv_action_border) {
-            luckyDrawView.startReversal();
-        } else if (view.getId() == R.id.tv_reset) {
-            luckyDrawView.resetAdapter();
-        }
-    }
 
+    }
 }

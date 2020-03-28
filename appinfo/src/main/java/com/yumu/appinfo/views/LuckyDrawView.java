@@ -2,30 +2,23 @@ package com.yumu.appinfo.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.yumu.appinfo.R;
-import com.yumu.appinfo.adapter.CardViewAdapter;
-import com.yumu.appinfo.bean.CardItem;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Date :  2020-02-28.
- * Time :  11:39.
+ * Date :  2020-03-28.
+ * Time :  15:39.
  * Created by sunan.
  */
+
 public class LuckyDrawView extends FrameLayout {
-    private RecyclerView recyclerView;
+
+    private LuckyDrawCardItemView itemView1, itemView2, itemView3, itemView4, itemView5, itemView6;
+    private IView[] itemViewArr = new IView[6];
     private int currentIndex = 0;
     private int currentTotal = 0;
     private int stayIndex = 0;
@@ -35,11 +28,6 @@ public class LuckyDrawView extends FrameLayout {
     private static final int DEFAULT_SPEED = 200;
     private static final int MIN_SPEED = 200;
     private int currentSpeed = DEFAULT_SPEED;
-    private Context context;
-    private CardViewAdapter cardViewAdapter;
-
-    private List<CardItem> cardItemList = new ArrayList<>();
-
 
     public LuckyDrawView(@NonNull Context context) {
         this(context, null);
@@ -49,16 +37,21 @@ public class LuckyDrawView extends FrameLayout {
         this(context, attrs, 0);
     }
 
-    public LuckyDrawView(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        this.context = context;
-        inflate(context, R.layout.view_lucky_draw, this);
-        setupView();
+    private LuckyDrawViewCallBack callback;
+
+    public interface LuckyDrawViewCallBack {
+        void onAnimationEnd();
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
+    public void setCallback(LuckyDrawViewCallBack callback) {
+        this.callback = callback;
+    }
+
+
+    public LuckyDrawView(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        inflate(context, R.layout.view_lucky_draw, this);
+        initView();
     }
 
     @Override
@@ -67,52 +60,43 @@ public class LuckyDrawView extends FrameLayout {
         super.onDetachedFromWindow();
     }
 
-    private void setupView() {
-        recyclerView = findViewById(R.id.recyclerView);
-        for (int i = 0; i < 6; i++) {
-            CardItem cardItem = new CardItem();
-            cardItem.setContent("第" + i + "个");
-            cardItemList.add(cardItem);
-        }
-        initAdapter();
+    private void initView() {
+        itemView1 = (LuckyDrawCardItemView) findViewById(R.id.item1);
+        itemView2 = (LuckyDrawCardItemView) findViewById(R.id.item2);
+        itemView3 = (LuckyDrawCardItemView) findViewById(R.id.item3);
+        itemView4 = (LuckyDrawCardItemView) findViewById(R.id.item4);
+        itemView5 = (LuckyDrawCardItemView) findViewById(R.id.item5);
+        itemView6 = (LuckyDrawCardItemView) findViewById(R.id.item6);
+
+        itemViewArr[0] = itemView1;
+        itemViewArr[1] = itemView2;
+        itemViewArr[2] = itemView3;
+        itemViewArr[3] = itemView6;
+        itemViewArr[4] = itemView5;
+        itemViewArr[5] = itemView4;
+
+
+        itemView1.setCallback(cardItemViewCallBack);
+        itemView2.setCallback(cardItemViewCallBack);
+        itemView3.setCallback(cardItemViewCallBack);
+        itemView4.setCallback(cardItemViewCallBack);
+        itemView5.setCallback(cardItemViewCallBack);
+        itemView6.setCallback(cardItemViewCallBack);
     }
+
+    LuckyDrawCardItemView.CardItemViewCallBack cardItemViewCallBack = new LuckyDrawCardItemView.CardItemViewCallBack() {
+        @Override
+        public void onAnimationEnd() {
+            if (callback != null) {
+                callback.onAnimationEnd();
+            }
+        }
+    };
 
     private void stopMarquee() {
         isGameRunning = false;
         isTryToStop = false;
-        currentIndex = 0;
-        currentTotal = 0;
-
     }
-
-    public void initAdapter() {
-        recyclerView.setLayoutManager(new GridLayoutManager(context, 3));
-        recyclerView.setAdapter(cardViewAdapter = new CardViewAdapter(context));
-        cardViewAdapter.setData(cardItemList);
-    }
-
-    public void startReversal() {
-        for (CardItem cardItem : cardItemList) {
-            if (cardItem.isBack()) {
-                cardItem.setBack(false);
-            } else {
-                cardItem.setBack(true);
-            }
-            cardItem.setSelect(false);
-        }
-        cardViewAdapter.setData(cardItemList);
-        cardViewAdapter.startReversal();
-    }
-
-    public void resetAdapter() {
-        for (CardItem cardItem : cardItemList) {
-            cardItem.setSelect(false);
-            cardItem.setBack(false);
-        }
-        cardViewAdapter.setData(cardItemList);
-        cardViewAdapter.notifyDataSetChanged();
-    }
-
 
     private long getInterruptTime() {
         currentTotal++;
@@ -122,7 +106,7 @@ public class LuckyDrawView extends FrameLayout {
                 currentSpeed = DEFAULT_SPEED;
             }
         } else {
-            if (currentTotal / cardItemList.size() > 0) {
+            if (currentTotal / itemViewArr.length > 0) {
                 currentSpeed -= 10;
             }
             if (currentSpeed < MIN_SPEED) {
@@ -136,9 +120,38 @@ public class LuckyDrawView extends FrameLayout {
         return isGameRunning;
     }
 
-    public void startGame() {
-        stopMarquee();// 每次开始 要重置索引
+    /**
+     * 重置数据
+     */
+    public void resetData() {
+        for (int i = 0; i < itemViewArr.length; i++) {
+            itemViewArr[i].resetView();
+        }
+    }
 
+
+    public IView[] getItemViewArr() {
+        return itemViewArr;
+    }
+
+    /**
+     * 开始游戏
+     * 先翻转 翻转动画 1秒 ，延时2秒 开始跑圈
+     */
+    public void startGame() {
+        for (int i = 0; i < itemViewArr.length; i++) {
+            itemViewArr[i].setBack(true);
+            itemViewArr[i].setSelect(false);
+        }
+        postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startGames();
+            }
+        }, 2000);
+    }
+
+    public void startGames() {
         isGameRunning = true;
         isTryToStop = false;
         currentSpeed = DEFAULT_SPEED;
@@ -146,36 +159,37 @@ public class LuckyDrawView extends FrameLayout {
             @Override
             public void run() {
                 while (isGameRunning) {
-                    try {
-                        Thread.sleep(getInterruptTime());
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
 
                     post(new Runnable() {
                         @Override
                         public void run() {
                             int preIndex = currentIndex;
                             currentIndex++;
-                            if (currentIndex >= cardItemList.size()) {
+                            if (currentIndex >= itemViewArr.length) {
                                 currentIndex = 0;
                             }
-                            cardItemList.get(preIndex).setSelect(false);
-                            cardItemList.get(currentIndex).setSelect(true);
 
-                            cardViewAdapter.setData(cardItemList);
-                            cardViewAdapter.notifyDataSetChanged();
+                            itemViewArr[preIndex].setSelect(false);
+                            itemViewArr[currentIndex].setSelect(true);
 
-                            Log.d("snn", " preIndex : " + preIndex + "     currentIndex : " + currentIndex);
                             if (isTryToStop && currentSpeed == DEFAULT_SPEED && stayIndex == currentIndex) {
                                 isGameRunning = false;
-                                cardItemList.get(currentIndex).setBack(true);
-                                cardViewAdapter.setData(cardItemList);
-                                cardViewAdapter.startReversal();
-                                Log.d("snn", " 结束  currentIndex : " + currentIndex);
+
+                                postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        itemViewArr[currentIndex].setAction(true);
+                                        itemViewArr[currentIndex].setBack(false);
+                                    }
+                                }, 1000);
                             }
                         }
                     });
+                    try {
+                        Thread.sleep(getInterruptTime());
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }).start();
@@ -185,4 +199,5 @@ public class LuckyDrawView extends FrameLayout {
         stayIndex = position;
         isTryToStop = true;
     }
+
 }

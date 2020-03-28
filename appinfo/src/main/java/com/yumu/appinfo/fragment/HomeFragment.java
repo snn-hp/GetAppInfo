@@ -18,7 +18,11 @@ import com.yumu.appinfo.utils.StatusBarHelper;
 import com.yumu.appinfo.views.ViewPagerAdapter;
 
 
-
+/**
+ * Date :  2020-03-28.
+ * Time :  15:39.
+ * Created by sunan.
+ */
 public class HomeFragment extends BaseFragment {
     protected SlidingTabLayout slidingTabLayout;
     protected ViewPager viewpager;

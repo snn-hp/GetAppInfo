@@ -11,7 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.yumu.appinfo.R;
 import com.yumu.appinfo.utils.StatusBarHelper;
 
-
+/**
+ * Date :  2020-03-28.
+ * Time :  15:39.
+ * Created by sunan.
+ */
 public class MainActivity extends AppCompatActivity {
     private TextView tvGoBehavior, tvGetInfo, tvGoViewPager2, tv_go_cardview;
 
