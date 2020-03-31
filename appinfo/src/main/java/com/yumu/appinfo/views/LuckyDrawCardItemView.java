@@ -9,9 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-
 import androidx.annotation.Nullable;
-
 import com.yumu.appinfo.R;
 
 
@@ -73,13 +71,13 @@ public class LuckyDrawCardItemView extends FrameLayout implements IView {
             direction = -1;
         }
 
-        flip(item_bg, 600, direction).addListener(listener);
+        flip(item_bg, 200, direction).addListener(listener);
         item_bg.postDelayed(new Runnable() {
             @Override
             public void run() {
                 switchViewVisibility(iv_back, iv_front);
             }
-        }, 600);
+        }, 200);
     }
 
     @Override

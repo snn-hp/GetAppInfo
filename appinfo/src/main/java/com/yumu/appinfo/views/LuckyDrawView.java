@@ -148,7 +148,7 @@ public class LuckyDrawView extends FrameLayout {
             public void run() {
                 startGames();
             }
-        }, 2000);
+        }, 1000);
     }
 
     public void startGames() {

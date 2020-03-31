@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -25,10 +26,10 @@ import java.util.Random;
  */
 public class PersonFragment extends Fragment implements View.OnClickListener {
     private LuckyDrawView luckView;
-    private int luckindex = -1;
+    private int selectIndex = -1;
     private CountDownTimer mTimer;
     private Button btn_start, btn_reset;
-
+    private String[] prizeList = {"香蕉一个","菊花一个","苹果一个","卤蛋一个","橘子一个","菠萝一个"};
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -73,12 +74,12 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
     }
 
     public void startGame() {
-        luckView.resetData();//防止连续点击 数据错乱 每次开始时候 重置数据
+        luckView.resetData();//demo防止连续点击 数据错乱 每次开始时候 重置数据
         luckView.startGame();
         btn_start.setClickable(false);
         btn_reset.setClickable(false);
 //      int second = new Random().nextInt(8) % (8 - 4 + 1) + 4;//随机 跑圈秒数 4 -8秒 至少要超过 翻转动画 和跑圈 延时时间
-        mTimer = new CountDownTimer(6 * 1000, 1000) {
+        mTimer = new CountDownTimer(3 * 1000, 1000) {
             @Override
             public void onTick(long l) {
 
@@ -86,9 +87,9 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onFinish() {
-                luckindex = new Random().nextInt(6);
-                Log.e("snn", "====luckindex===" + luckindex);
-                luckView.tryToStop(luckindex);
+                selectIndex = new Random().nextInt(6);
+                Log.e("snn", "====luckindex===" + selectIndex);
+                luckView.tryToStop(selectIndex);
                 mTimer = null;
             }
         };
@@ -101,9 +102,10 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
             Log.d("snn", "drawViewCallBack 选中卡片 翻转OK");
             btn_start.setClickable(true);
             btn_reset.setClickable(true);
-            if (luckindex != -1) {
+            if (selectIndex != -1) {
                 // TODO: 2020/3/28 在这里可以根据数据源 去做选中的操作  luckindex
-                luckindex = -1;
+                Toast.makeText(getActivity(), "恭喜你，中奖了 ：" + prizeList[selectIndex], Toast.LENGTH_LONG).show();
+                selectIndex = -1;
             }
         }
     };
