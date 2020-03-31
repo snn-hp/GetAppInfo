@@ -14,7 +14,7 @@ MD5 SHA1 SHA256 签名信息 点击签名信息可复制到剪切板
 
 ![image](https://github.com/sunan-n/GetAppInfo/blob/dev/images/prize.gif)
 ![image](https://github.com/sunan-n/GetAppInfo/blob/dev/images/scroll.gif)
-![image](https://github.com/sunan-n/GetAppInfo/blob/dev/images/appinfos_scroll.gif)
+![image](https://github.com/sunan-n/GetAppInfo/blob/dev/images/appinfos_scroll_tab.gif)
 ![image](https://github.com/sunan-n/GetAppInfo/blob/dev/images/appinfos.gif)
 
 
