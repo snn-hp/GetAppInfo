@@ -29,7 +29,7 @@
         android:text="获取应用信息"
         android:textColor="#ffffff" />
 
-       <TextView
+    <TextView
         android:id="@+id/tv_go_behavior"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,7 +64,16 @@
         android:textColor="#ffffff" />
 
 
-
+    <com.yumu.appinfo.views.NumberAnimTextView
+        android:id="@+id/tv_number_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:textSize="17sp"
+        android:background="@color/cardview_dark_background"
+        android:padding="20dp"
+        android:textColor="#ffffff" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -83,7 +83,7 @@ public class MailboxFragment extends Fragment implements View.OnClickListener {
         @Override
         public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
-            isVisBottom(recyclerView);
+            isVisBottom(recyclerView, recyclerViewTwo);
         }
     };
 
@@ -91,17 +91,20 @@ public class MailboxFragment extends Fragment implements View.OnClickListener {
         @Override
         public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
-            isVisBottom(recyclerView);
+            isVisBottom(recyclerView, recyclerViewOne);
         }
     };
 
-    public void isVisBottom(RecyclerView recyclerView) {
+    public void isVisBottom(RecyclerView recyclerView, RecyclerView recyclerViewOther) {
         LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
         if (!recyclerView.canScrollHorizontally(-1)) {//当前在顶部
             recyclerView.smoothScrollToPosition(linearLayoutManager.getItemCount() - 1);
+            recyclerViewOther.smoothScrollToPosition(0);
         }
         if (!recyclerView.canScrollHorizontally(1)) {//当前在底部
             recyclerView.smoothScrollToPosition(0);
+            recyclerViewOther.smoothScrollToPosition(linearLayoutManager.getItemCount() - 1);
+
         }
     }
 
