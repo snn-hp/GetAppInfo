@@ -26,8 +26,8 @@ import java.util.Random;
  * Created by sunan.
  */
 public class MailboxFragment extends Fragment implements View.OnClickListener {
-    private CirculationViewAdapter adapterOne, adapterTwo, adapterThree;
-    private RecyclerView recyclerViewOne, recyclerViewTwo, recyclerViewThree;
+    private CirculationViewAdapter adapterOne, adapterTwo, adapterThree,adapterFour;
+    private RecyclerView recyclerViewOne, recyclerViewTwo, recyclerViewThree,recyclerViewFour;
 
     @Nullable
     @Override
@@ -42,6 +42,7 @@ public class MailboxFragment extends Fragment implements View.OnClickListener {
         recyclerViewOne = view.findViewById(R.id.recyclerViewOne);
         recyclerViewTwo = view.findViewById(R.id.recyclerViewTwo);
         recyclerViewThree = view.findViewById(R.id.recyclerViewThree);
+        recyclerViewFour = view.findViewById(R.id.recyclerViewFour);
         initRecyclerView();
         addViewAction();
     }
@@ -69,6 +70,14 @@ public class MailboxFragment extends Fragment implements View.OnClickListener {
         recyclerViewThree.setLayoutManager(layoutManagerThree);
         recyclerViewThree.setAdapter(adapterThree = new CirculationViewAdapter(getActivity(), 3));
         recyclerViewThree.smoothScrollToPosition(Integer.MAX_VALUE / 2);
+
+        //  x 负方向 无限滚动
+        CustomLinerLayoutManager layoutManagerFour = new CustomLinerLayoutManager(getActivity());
+        layoutManagerFour.setSpeedSlow();
+        layoutManagerFour.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerViewFour.setLayoutManager(layoutManagerFour);
+        recyclerViewFour.setAdapter(adapterFour = new CirculationViewAdapter(getActivity(), 3));
+        recyclerViewFour.smoothScrollToPosition(0);
 
     }
 

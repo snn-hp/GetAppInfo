@@ -65,6 +65,8 @@ public class TestBehaviorActivity extends AppCompatActivity {
             changeFragment(tvDiscovery);
         }else if (currentTab == 2) {
             changeFragment(tvMailbox);
+        }else if (currentTab == 3) {
+            changeFragment(tvPerson);
         }
     }
 

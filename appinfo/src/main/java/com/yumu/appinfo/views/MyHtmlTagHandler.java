@@ -56,7 +56,7 @@ public class MyHtmlTagHandler implements Html.TagHandler {
         // 获取属性值
         String color = attributes.get("color");
         String size = attributes.get("size");
-        size = size.split("dp")[0];
+        size = size.split("px")[0];
 
         // 设置字体大小
         if (!TextUtils.isEmpty(size)) {

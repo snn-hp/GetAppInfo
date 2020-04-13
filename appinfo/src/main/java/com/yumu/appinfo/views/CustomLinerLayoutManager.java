@@ -40,7 +40,12 @@ public class CustomLinerLayoutManager extends LinearLayoutManager {
     @Override
     public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int position) {
         RecyclerView.SmoothScroller smoothScroller = new CenterSmoothScroller(recyclerView.getContext());
+        if (position == 0) {
+            position = recyclerView.getLayoutManager().getChildCount() - 1;
+        }
+
         smoothScroller.setTargetPosition(position);
+
         startSmoothScroll(smoothScroller);
     }
 

@@ -51,6 +51,16 @@
         android:text="TestViewPager2"
         android:textColor="#ffffff" />
 
+    <TextView
+        android:id="@+id/tv_recyclerview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:background="@color/colorAccent"
+        android:padding="15dp"
+        android:text="RecyclerView循环滚动"
+        android:textColor="#ffffff" />
 
     <TextView
         android:id="@+id/tv_go_cardview"
@@ -60,9 +70,8 @@
         android:layout_marginTop="30dp"
         android:background="@color/colorAccent"
         android:padding="15dp"
-        android:text="TestCardView"
+        android:text="卡片抽奖"
         android:textColor="#ffffff" />
-
 
     <com.yumu.appinfo.views.NumberAnimTextView
         android:id="@+id/tv_number_text"
@@ -70,10 +79,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:textSize="17sp"
         android:background="@color/cardview_dark_background"
         android:padding="20dp"
-        android:textColor="#ffffff" />
+        android:textColor="#ffffff"
+        android:textSize="17sp" />
 
     <LinearLayout
         android:layout_width="match_parent"

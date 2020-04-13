@@ -24,6 +24,12 @@
         android:layout_below="@+id/recyclerViewTwo"
         android:layout_marginTop="20dp" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewFour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recyclerViewThree"
+        android:layout_marginTop="20dp" />
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"

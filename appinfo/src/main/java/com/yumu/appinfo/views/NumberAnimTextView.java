@@ -159,7 +159,7 @@ public class NumberAnimTextView extends TextView {
     }
 
     public void setStyle(String mNumEnd) {
-        Spanned spanned = Html.fromHtml(mPrefixString + " <myfont size='25dp'  color=\"#EB388C\">" + mNumEnd + "</myfont> " + "<myfont  size='17px' color=\"#EB388C\">" + mPostfixString + "</myfont> ", null, new MyHtmlTagHandler("myfont"));
+        Spanned spanned = Html.fromHtml(mPrefixString + " <myfont size='25px'  color=\"#EB388C\">" + mNumEnd + "</myfont> " + "<myfont  size='17px' color=\"#EB388C\">" + mPostfixString + "</myfont> ", null, new MyHtmlTagHandler("myfont"));
         setText(spanned);
     }
 

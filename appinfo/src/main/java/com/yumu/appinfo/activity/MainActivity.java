@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.yumu.appinfo.R;
 import com.yumu.appinfo.utils.StatusBarHelper;
 import com.yumu.appinfo.views.NumberAnimTextView;
+
 import java.util.Random;
 
 /**
@@ -18,8 +21,9 @@ import java.util.Random;
  * Created by sunan.
  */
 public class MainActivity extends AppCompatActivity {
-    private TextView tvGoBehavior, tvGetInfo, tvGoViewPager2, tv_go_cardview;
+    private TextView tvGoBehavior, tvGetInfo, tvGoViewPager2;
     private NumberAnimTextView tv_number_text;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,9 +31,7 @@ public class MainActivity extends AppCompatActivity {
         tvGetInfo = findViewById(R.id.tv_get_info);
         tvGoBehavior = findViewById(R.id.tv_go_behavior);
         tvGoViewPager2 = findViewById(R.id.tv_go_viewpager2);
-        tv_go_cardview = findViewById(R.id.tv_go_cardview);
         tv_number_text = findViewById(R.id.tv_number_text);
-
         addViewAction();
         initStatusBar();
     }
@@ -43,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
         tvGetInfo.setOnClickListener(onClickListener);
         tvGoBehavior.setOnClickListener(onClickListener);
         tvGoViewPager2.setOnClickListener(onClickListener);
-        tv_go_cardview.setOnClickListener(onClickListener);
+        findViewById(R.id.tv_go_cardview).setOnClickListener(onClickListener);
+        findViewById(R.id.tv_recyclerview).setOnClickListener(onClickListener);
     }
 
     @Override
@@ -57,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTick(long l) {
                 int second = new Random().nextInt(800) % (800 - 500 + 1) + 500;//随机 跑圈秒数 4 -8秒 至少要超过 翻转动画 和跑圈 延时时间
-                tv_number_text.setNumberString(tv_number_text.getmNumEnd(),second+"");
+                tv_number_text.setNumberString(tv_number_text.getmNumEnd(), second + "");
             }
 
             @Override
@@ -78,8 +81,10 @@ public class MainActivity extends AppCompatActivity {
                 gotoActivity(TestBehaviorActivity.class, 0);
             } else if (view.getId() == R.id.tv_go_viewpager2) {
                 gotoActivity(TestBehaviorActivity.class, 1);
-            } else if (view.getId() == R.id.tv_go_cardview) {
+            } else if (view.getId() == R.id.tv_recyclerview) {
                 gotoActivity(TestBehaviorActivity.class, 2);
+            } else if (view.getId() == R.id.tv_go_cardview) {
+                gotoActivity(TestBehaviorActivity.class, 3);
             }
         }
     };
