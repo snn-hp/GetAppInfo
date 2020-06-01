@@ -24,4 +24,31 @@
         android:scaleType="centerCrop"
         android:src="@mipmap/icon_delete_image"
         android:visibility="invisible" />
+
+
+    <ImageView
+        android:id="@+id/iv_video"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_centerInParent="true"
+        android:padding="5dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/icon_picture_video_play"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tv_duration"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/picture_icon_shadow_bg"
+        android:drawableLeft="@drawable/picture_icon_video"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:paddingTop="8dp"
+        android:text="00:00"
+        android:textColor="@color/picture_color_white"
+        android:textSize="11sp"
+        android:visibility="gone" />
 </RelativeLayout>

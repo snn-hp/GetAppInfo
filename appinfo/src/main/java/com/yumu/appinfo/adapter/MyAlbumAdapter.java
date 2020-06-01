@@ -7,10 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.luck.picture.lib.tools.DateUtils;
 import com.yumu.appinfo.R;
 import com.yumu.appinfo.imageutil.ImageLoaderManager;
 import com.yumu.appinfo.bean.Album;
@@ -49,9 +51,6 @@ public class MyAlbumAdapter extends RecyclerView.Adapter<MyAlbumAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-
-        Log.d("snn", "position :  " + position + " appInfoList : " + albumList.size());
-
         if (position == albumList.size()) {
             holder.iv_image.setImageBitmap(null);
             holder.iv_image.setImageResource(R.mipmap.icon_album_add);
@@ -62,6 +61,15 @@ public class MyAlbumAdapter extends RecyclerView.Adapter<MyAlbumAdapter.ViewHold
             holder.iv_delete.setVisibility(View.VISIBLE);
             ImageView ivImage = holder.iv_image;
             ImageLoaderManager.displayLocalImage(context, album.getPreview_url(), ivImage);
+
+            if (album.isVideo()) {
+                holder.iv_video.setVisibility(View.VISIBLE);
+                holder.tvDuration.setVisibility(View.VISIBLE);
+                holder.tvDuration.setText(DateUtils.formatDurationTime(album.getDuration()));
+            } else {
+                holder.iv_video.setVisibility(View.GONE);
+                holder.tvDuration.setVisibility(View.GONE);
+            }
         }
 
 
@@ -113,12 +121,15 @@ public class MyAlbumAdapter extends RecyclerView.Adapter<MyAlbumAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView iv_image, iv_delete;
+        private ImageView iv_image, iv_delete, iv_video;
+        private TextView tvDuration;
 
         public ViewHolder(View view) {
             super(view);
             iv_image = view.findViewById(R.id.iv_image);
             iv_delete = view.findViewById(R.id.iv_delete);
+            iv_video = view.findViewById(R.id.iv_video);
+            tvDuration = view.findViewById(R.id.tv_duration);
         }
     }
 }

@@ -13,7 +13,7 @@ public class Album implements Serializable {
     private String file_url;//原图，大图
     private String preview_url;//预览图
     private boolean selected;//是否选择
-
+    private long duration;
     private String videoUrl;//视频播放Url
 
     public Album() {
@@ -92,5 +92,13 @@ public class Album implements Serializable {
 
     public void setVideoUrl(String videoUrl) {
         this.videoUrl = videoUrl;
+    }
+
+    public long getDuration() {
+        return duration;
+    }
+
+    public void setDuration(long duration) {
+        this.duration = duration;
     }
 }

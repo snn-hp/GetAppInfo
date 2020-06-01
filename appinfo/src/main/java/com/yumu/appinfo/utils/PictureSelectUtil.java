@@ -22,6 +22,12 @@ public class PictureSelectUtil {
         selectImage(activity, 1, true, true);
     }
 
+    public static void selectALLMime(Activity activity, int maxSelectNum, boolean isCamera, boolean enableCrop, boolean enablePreview, int requestCode) {
+        int selectionMode = maxSelectNum == 1 ? PictureConfig.SINGLE : PictureConfig.MULTIPLE;
+        select(activity, PictureMimeType.ofAll(), maxSelectNum, 4, selectionMode, enablePreview, isCamera, enableCrop, 10, 15, 15, requestCode);
+    }
+
+
     public static void selectImage(Activity activity, int maxSelectNum, boolean isCamera, boolean enableCrop) {
         selectImage(activity, maxSelectNum, isCamera, enableCrop, true, BaseConstans.RequestCode.SELECT_IMAGE);
     }
@@ -61,13 +67,16 @@ public class PictureSelectUtil {
         PictureSelector.create(activity)
                 .openGallery(mimeType)//全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
                 .imageSpanCount(imageSpanCount)// 每行显示个数 int
-//                .theme(R.style.picture_white_style)
                 .theme(R.style.picture_default_style)
                 .maxSelectNum(maxSelectNum)
                 .selectionMode(selectionMode)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
-                .previewImage(enablePreview)// 是否可预览图片 true or false
+                .isPreviewImage(enablePreview)// 是否可预览图片 true or false
+                .isPreviewVideo(true)// 是否可预览视频 true or false
                 .isCamera(isCamera)// 是否显示拍照按钮 true or false
-                .imageFormat(PictureMimeType.PNG_Q)// 拍照保存图片格式后缀,默认jpeg
+                .isWithVideoImage(true)// 图片和视频是否可以同选,只在ofAll模式下有效
+                .maxVideoSelectNum(maxSelectNum) // 视频最大选择数量
+//                .imageFormat(PictureMimeType.PNG_Q)// 单独 拍照 拍照保存图片格式后缀,默认jpeg
+//                .imageFormat(PictureMimeType.ofMP4())// 单独 录制视频配置
                 .isZoomAnim(true)// 图片列表点击 缩放效果 默认true
                 .enableCrop(enableCrop)// 是否裁剪 true or false
                 .freeStyleCropEnabled(true)// 裁剪框是否可拖拽 true or false
@@ -79,8 +88,7 @@ public class PictureSelectUtil {
                 .recordVideoSecond(recordVideoSecond)
                 .compress(true)//压缩
                 .minimumCompressSize(100)// 小于100kb的图片不压缩
-
-                .loadImageEngine(GlideEngine.createGlideEngine())// 外部传入图片加载引擎，必传项
+                .imageEngine(GlideEngine.createGlideEngine())// 外部传入图片加载引擎，必传项
                 .forResult(requestCode);//结果回调onActivityResult code
     }
 
