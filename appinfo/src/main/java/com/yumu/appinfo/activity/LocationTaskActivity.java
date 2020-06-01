@@ -34,8 +34,7 @@ public class LocationTaskActivity extends AppCompatActivity implements EasyPermi
     private String[] permsLocation = {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.INTERNET,
-            Manifest.permission.READ_PHONE_STATE
+            Manifest.permission.CAMERA
     };
 
     @Override

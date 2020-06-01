@@ -67,7 +67,7 @@ public class PictureSelectUtil {
                 .selectionMode(selectionMode)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
                 .previewImage(enablePreview)// 是否可预览图片 true or false
                 .isCamera(isCamera)// 是否显示拍照按钮 true or false
-                .imageFormat(PictureMimeType.PNG)// 拍照保存图片格式后缀,默认jpeg
+                .imageFormat(PictureMimeType.PNG_Q)// 拍照保存图片格式后缀,默认jpeg
                 .isZoomAnim(true)// 图片列表点击 缩放效果 默认true
                 .enableCrop(enableCrop)// 是否裁剪 true or false
                 .freeStyleCropEnabled(true)// 裁剪框是否可拖拽 true or false
