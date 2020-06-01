@@ -77,7 +77,7 @@ public class LocationTaskActivity extends AppCompatActivity implements EasyPermi
         pDialog = new SweetAlertDialog(LocationTaskActivity.this, SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
         pDialog.setTitleText("Loading");
-        pDialog.setCancelable(false);
+        pDialog.setCancelable(true);
         pDialog.show();
     }
 
