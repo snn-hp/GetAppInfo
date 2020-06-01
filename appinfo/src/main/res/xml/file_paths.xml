@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <paths>
+        <!--对应外部内存卡根目录：Environment.getExternalStorageDirectory()-->
+        <external-path
+            name="external-path"
+            path="" />
+        <external-path
+            name="named"
+            path="Download" />
+        <external-path
+            name="nameD"
+            path="download" />
+        <external-path
+            name="namei"
+            path="image" />
+        <external-path
+            name="namev"
+            path="video" />
+        <external-path
+            name="namea"
+            path="audio" />
+
+        <!--    代表app 私有的存储区域 Context.getFilesDir()目录下的images目录 /data/user/0/包名/files/image -->
+        <files-path
+            name="private_image"
+            path="image" />
+        <files-path
+            name="private_video"
+            path="video" />
+        <files-path
+            name="private_audio"
+            path="audio" />
+        <files-path
+            name="private_D"
+            path="Download" />
+        <files-path
+            name="private_d"
+            path="download" />
+        <!--代表app 私有的存储区域 Context.getCacheDir()目录下的images目录 /data/user/0/包名/cache/image -->
+        <cache-path
+            name="private_cache_image"
+            path="image" />
+        <cache-path
+            name="private_cache_video"
+            path="video" />
+        <cache-path
+            name="private_cache_audio"
+            path="audio" />
+        <files-path
+            name="private_cache_D"
+            path="Download" />
+        <files-path
+            name="private_cache_d"
+            path="download" />
+        <files-path
+            name="PictureSelector"
+            path="PictureSelector" />
+        <files-path
+            name="c_cache"
+            path="cache" />
+    </paths>
+</resources>

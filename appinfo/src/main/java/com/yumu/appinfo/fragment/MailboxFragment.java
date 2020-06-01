@@ -77,7 +77,7 @@ public class MailboxFragment extends Fragment implements View.OnClickListener {
         layoutManagerFour.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerViewFour.setLayoutManager(layoutManagerFour);
         recyclerViewFour.setAdapter(adapterFour = new CirculationViewAdapter(getActivity(), 3));
-        recyclerViewFour.smoothScrollToPosition(0);
+//        recyclerViewFour.smoothScrollToPosition(0);
 
     }
 

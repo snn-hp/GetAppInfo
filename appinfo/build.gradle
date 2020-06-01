@@ -1,13 +1,15 @@
 apply plugin: 'com.android.application'
+
 def releaseTime() {
     return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
 }
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
     defaultConfig {
         applicationId "com.yumu.appinfo"
-        minSdkVersion 17
+        minSdkVersion 20
         targetSdkVersion 29
         versionCode 1
         versionName "1.1.0"
@@ -51,6 +53,17 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation project(path: ':FlycoTabLayout_Lib')
+    implementation project(path: ':simplelocation')
     implementation "com.google.android.material:material:1.0.0"
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    // 动态权限
+    implementation 'pub.devrel:easypermissions:1.1.0'
+    //sweetalert
+    implementation 'com.github.f0ris.sweetalert:library:1.6.2'
+    // PictureSelector
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.5.6'
+    //glide
+    implementation "com.github.bumptech.glide:glide:4.9.0"
+    implementation 'com.ansen.shape:shape:1.2.2'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 }

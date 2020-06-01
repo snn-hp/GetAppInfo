@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         tvGoViewPager2.setOnClickListener(onClickListener);
         findViewById(R.id.tv_go_cardview).setOnClickListener(onClickListener);
         findViewById(R.id.tv_recyclerview).setOnClickListener(onClickListener);
+        findViewById(R.id.tv_location).setOnClickListener(onClickListener);
+        findViewById(R.id.tv_get_picture).setOnClickListener(onClickListener);
     }
 
     @Override
@@ -85,6 +87,10 @@ public class MainActivity extends AppCompatActivity {
                 gotoActivity(TestBehaviorActivity.class, 2);
             } else if (view.getId() == R.id.tv_go_cardview) {
                 gotoActivity(TestBehaviorActivity.class, 3);
+            } else if (view.getId() == R.id.tv_location) {
+                gotoActivity(LocationTaskActivity.class);
+            } else if (view.getId() == R.id.tv_get_picture) {
+                gotoActivity(MyAlbumActivity.class);
             }
         }
     };

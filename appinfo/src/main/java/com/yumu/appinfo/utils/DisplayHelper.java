@@ -18,6 +18,8 @@ package com.yumu.appinfo.utils;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 
 /**
  * @author cginechen
@@ -44,4 +46,11 @@ public class DisplayHelper {
     public static int dp2px(Context context, int dp) {
         return (int) (getDensity(context) * dp + 0.5);
     }
+
+
+    public static int dpToPx(Context context, float dipValue) {
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dipValue, metrics);
+    }
+
 }

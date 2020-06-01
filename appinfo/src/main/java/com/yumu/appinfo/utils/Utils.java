@@ -1,13 +1,21 @@
 package com.yumu.appinfo.utils;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.ClipData;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.luck.picture.lib.config.PictureMimeType;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -319,4 +327,60 @@ public class Utils {
         return hexString;
     }
 
+    public static boolean isActivityUseable(Activity mActivity) {
+        if ((null == mActivity) || mActivity.isFinishing() || mActivity.isRestricted()) {
+            return false;
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            try {
+                if (mActivity.isDestroyed()) {
+                    return false;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } catch (Error e) {
+                e.printStackTrace();
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Gets the corresponding path to a file from the given content:// URI
+     *
+     * @param path            The content:// URI to find the file path from
+     * @param contentResolver The content resolver to use to perform the query.
+     * @return the file path as a string
+     */
+    public static String getFilePathFromContentUri(String path, ContentResolver contentResolver) {
+        if (TextUtils.isEmpty(path)) {
+            return path;
+        }
+        if (path.startsWith("content://")) {
+            String[] filePathColumn = {MediaStore.MediaColumns.DATA};
+            Cursor cursor = contentResolver.query(Uri.parse(path), filePathColumn, null, null, null);
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String filePath = cursor.getString(columnIndex);
+            cursor.close();
+            return filePath;
+        } else {
+            return path;
+        }
+    }
+
+    public static String getMimeTypeValue(String mimeType) {
+        if (TextUtils.isEmpty(mimeType)) {
+            return "image";
+        }
+        if (mimeType.startsWith(PictureMimeType.MIME_TYPE_PREFIX_VIDEO)) {
+            return "video";
+        } else if (mimeType.startsWith(PictureMimeType.MIME_TYPE_PREFIX_AUDIO)) {
+            return "audio";
+        } else {
+            return "image";
+        }
+    }
 }

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimaryDark">#D81B60</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="whitecolorPrimaryDark">#ffffff</color>
     <!--color_tab_title-->
     <color name="color_tab_title_unselect">#999999</color>
     <color name="color_tab_title_select">#EE398E</color>
     <!--MainActivity-->
     <!--MainActivity-->
     <color name="main_bg_bottom">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
     <color name="main_bg_bottom_shadow">#1a000000</color>
 </resources>

@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.yumu.appinfo.R;
 import com.yumu.appinfo.adapter.AppInfoAdapter;
 import com.yumu.appinfo.bean.APPInfo;
+import com.yumu.appinfo.utils.StatusBarHelper;
 import com.yumu.appinfo.utils.Utils;
 
 import java.util.ArrayList;
@@ -51,8 +52,14 @@ public class GetAppInfoActivity extends AppCompatActivity {
         sysInfoList = new ArrayList<>();
         setAdapter();
         addViewAction();
+        initStatusBar();
     }
 
+
+    public void initStatusBar() {
+        StatusBarHelper.setStatusBarLightMode(this);
+        StatusBarHelper.setStatusBarColor(this, R.color.whitecolorPrimaryDark, false);
+    }
 
     public void setAdapter() {
         appInfoAdapter = new AppInfoAdapter(getApplicationContext());
