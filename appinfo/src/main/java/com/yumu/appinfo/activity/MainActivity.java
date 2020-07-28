@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.yumu.appinfo.R;
+import com.yumu.appinfo.dialog.RedPacketDialog;
 import com.yumu.appinfo.utils.StatusBarHelper;
 import com.yumu.appinfo.views.NumberAnimTextView;
 
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.tv_recyclerview).setOnClickListener(onClickListener);
         findViewById(R.id.tv_location).setOnClickListener(onClickListener);
         findViewById(R.id.tv_get_picture).setOnClickListener(onClickListener);
+        findViewById(R.id.tv_open_red_packet).setOnClickListener(onClickListener);
     }
 
     @Override
@@ -91,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
                 gotoActivity(LocationTaskActivity.class);
             } else if (view.getId() == R.id.tv_get_picture) {
                 gotoActivity(MyAlbumActivity.class);
+            } else if (view.getId() == R.id.tv_open_red_packet) {
+                RedPacketDialog dialog = new RedPacketDialog(MainActivity.this);
+                dialog.show();
             }
         }
     };

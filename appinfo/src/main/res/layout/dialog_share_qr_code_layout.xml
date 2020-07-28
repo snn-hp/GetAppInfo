@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ansen.shape.AnsenRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="30dp"
+    android:layout_marginEnd="30dp">
+
+    <RelativeLayout
+        android:id="@+id/rl_no_open"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/iv_bg"
+            android:layout_width="303dp"
+            android:layout_height="380dp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/icon_red_packet_bg" />
+
+        <ImageView
+            android:id="@+id/iv_open"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_bg"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="70dp"
+            android:src="@mipmap/icon_open_red_packet" />
+
+        <TextView
+            android:id="@+id/tv_red_packet_outside_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/iv_open"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="60dp"
+            android:gravity="center"
+            android:text="加入家族奖励红包"
+            android:textColor="#FFF9BC"
+            android:textSize="19sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_open"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_open_bg"
+            android:layout_width="303dp"
+            android:layout_height="380dp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/icon_red_packet_open_bg" />
+
+        <TextView
+            android:id="@+id/tv_red_packet_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:gravity="center"
+            android:text="加入家族奖励红包"
+            android:textColor="#B36D28"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_red_packet_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_red_packet_title"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="3"
+            android:textColor="#F75C1A"
+            android:textSize="44sp" />
+
+        <TextView
+            android:id="@+id/tv_red_packet_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_red_packet_value"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="钻石"
+            android:textColor="#B36D28"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_red_packet_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_red_packet_unit"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="已存入账户，快去撩小姐姐吧~"
+            android:textColor="#B4A18D"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+</com.ansen.shape.AnsenRelativeLayout>
