@@ -6,12 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.yumu.appinfo.R;
 import com.yumu.appinfo.bean.APPInfo;
 import com.yumu.appinfo.utils.Utils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,6 +84,15 @@ public class AppInfoAdapter extends RecyclerView.Adapter<AppInfoAdapter.ViewHold
 
             }
         });
+
+        holder.tvAppPackageNameValue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utils.copyString(context, holder.tvAppPackageNameValue.getText().toString());
+                Toast.makeText(context, "APP包名 已复制", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override

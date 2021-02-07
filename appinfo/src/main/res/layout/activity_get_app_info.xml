@@ -14,12 +14,22 @@
         android:layout_marginTop="30dp"
         android:background="@color/colorAccent"
         android:padding="15dp"
-        android:text="获取应用信息"
+        android:text="第一步：先点击这里 ：获取应用信息"
         android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_get_info"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:padding="5dp"
+        android:text="提示：点击 包名，签名信息，可复制对应的值"
+        android:textColor="#000000" />
 
     <RelativeLayout
         android:id="@+id/rl_search"
@@ -27,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_get_info"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="10dp">
 
         <EditText
@@ -35,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_toLeftOf="@+id/tv_search"
-            android:hint="搜索应用名或包名"
+            android:hint="第二步：搜索应用名或包名"
             android:imeOptions="actionSearch"
             android:singleLine="true"
             android:textSize="15sp" />
@@ -50,7 +60,7 @@
             android:layout_marginRight="15dp"
             android:background="@color/colorAccent"
             android:padding="5dp"
-            android:text="搜索"
+            android:text="第三步：搜索"
             android:textColor="#ffffff" />
 
     </RelativeLayout>
