@@ -15,8 +15,6 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.luck.picture.lib.config.PictureMimeType;
-
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.security.MessageDigest;
@@ -371,16 +369,16 @@ public class Utils {
         }
     }
 
-    public static String getMimeTypeValue(String mimeType) {
-        if (TextUtils.isEmpty(mimeType)) {
-            return "image";
-        }
-        if (mimeType.startsWith(PictureMimeType.MIME_TYPE_PREFIX_VIDEO)) {
-            return "video";
-        } else if (mimeType.startsWith(PictureMimeType.MIME_TYPE_PREFIX_AUDIO)) {
-            return "audio";
-        } else {
-            return "image";
-        }
-    }
+//    public static String getMimeTypeValue(String mimeType) {
+//        if (TextUtils.isEmpty(mimeType)) {
+//            return "image";
+//        }
+//        if (mimeType.startsWith(PictureMimeType.MIME_TYPE_PREFIX_VIDEO)) {
+//            return "video";
+//        } else if (mimeType.startsWith(PictureMimeType.MIME_TYPE_PREFIX_AUDIO)) {
+//            return "audio";
+//        } else {
+//            return "image";
+//        }
+//    }
 }

@@ -10,6 +10,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.yumu.appinfo.R;
+import com.yumu.appinfo.card_tantan.GalleryActivity;
+import com.yumu.appinfo.card_tantan.TanTanCardActivity;
+import com.yumu.appinfo.card_tantan.ZuiMeiCardActivity;
 import com.yumu.appinfo.dialog.RedPacketDialog;
 import com.yumu.appinfo.utils.StatusBarHelper;
 import com.yumu.appinfo.views.NumberAnimTextView;
@@ -51,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.tv_location).setOnClickListener(onClickListener);
         findViewById(R.id.tv_get_picture).setOnClickListener(onClickListener);
         findViewById(R.id.tv_open_red_packet).setOnClickListener(onClickListener);
+        findViewById(R.id.tv_tantan_one).setOnClickListener(onClickListener);
     }
 
     @Override
@@ -90,12 +94,18 @@ public class MainActivity extends AppCompatActivity {
             } else if (view.getId() == R.id.tv_go_cardview) {
                 gotoActivity(TestBehaviorActivity.class, 3);
             } else if (view.getId() == R.id.tv_location) {
-                gotoActivity(LocationTaskActivity.class);
+                gotoActivity(LocationTaskActivity.class, 3);
             } else if (view.getId() == R.id.tv_get_picture) {
                 gotoActivity(MyAlbumActivity.class);
             } else if (view.getId() == R.id.tv_open_red_packet) {
                 RedPacketDialog dialog = new RedPacketDialog(MainActivity.this);
                 dialog.show();
+            } else if (view.getId() == R.id.tv_tantan_one) {
+//                gotoActivity(CardActivity.class);
+//                gotoActivity(TanTanAvatarActivity.class);
+//                gotoActivity(TanTanCardActivity.class);
+                gotoActivity(GalleryActivity.class);
+//                gotoActivity(ZuiMeiCardActivity.class);
             }
         }
     };

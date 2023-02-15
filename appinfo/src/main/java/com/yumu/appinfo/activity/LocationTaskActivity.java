@@ -108,7 +108,7 @@ public class LocationTaskActivity extends AppCompatActivity implements EasyPermi
 
             @Override
             public void onFail(int errorCode, String error) {
-                Log.e(LOG_TAG, "error:" + error);
+                Log.e(LOG_TAG, "ReverseGeocodingManager error:" + error);
                 tvSimpleAd.setText("errorCode:" + errorCode + ", error:" + error);
                 tvSimpleAd.setVisibility(View.VISIBLE);
             }
@@ -133,7 +133,7 @@ public class LocationTaskActivity extends AppCompatActivity implements EasyPermi
 
             @Override
             public void onFail(String msg) {
-                Log.e(LOG_TAG, "error:" + msg);
+                Log.e(LOG_TAG, "GeocodingManager error:" + msg);
                 tvSimpleAd.setText("error:" + msg);
                 tvSimpleLo.setVisibility(View.VISIBLE);
             }

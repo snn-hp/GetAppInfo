@@ -142,7 +142,7 @@ public class MyAlbumActivity extends AppCompatActivity implements EasyPermission
                 album.setPreview_url(path);
                 album.setSelected(true);
                 album.setDuration(localMedia.getDuration());
-                album.setType(Utils.getMimeTypeValue(localMedia.getMimeType()));
+//                album.setType(Utils.getMimeTypeValue(localMedia.getMimeType()));
                 albumList.add(album);
 
                 selectMediaList.add(localMedia);

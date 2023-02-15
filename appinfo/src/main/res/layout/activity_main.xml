@@ -91,7 +91,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
         android:layout_toRightOf="@+id/tv_go_cardview"
-        android:background="@color/cardview_dark_background"
+        android:background="@color/red_btn_bg_color"
         android:padding="8dp"
         android:textColor="#ffffff"
         android:textSize="15sp" />
@@ -108,7 +108,6 @@
         android:padding="15dp"
         android:text="获取位置信息"
         android:textColor="#ffffff" />
-
 
     <TextView
         android:id="@+id/tv_get_picture"
@@ -169,5 +168,20 @@
         android:padding="15dp"
         android:text="抢红包"
         android:textColor="#ffffff" />
+
+
+    <TextView
+        android:id="@+id/tv_tantan_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_open_red_packet"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="130dp"
+        android:background="@color/colorAccent"
+        android:padding="15dp"
+        android:text="仿照探探卡片"
+        android:textColor="#ffffff" />
+
+
 
 </RelativeLayout>

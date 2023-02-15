@@ -28,6 +28,12 @@
         <activity android:name=".activity.TestBehaviorActivity" />
         <activity android:name=".activity.LocationTaskActivity" />
         <activity android:name=".activity.MyAlbumActivity" />
+        <activity android:name=".card_tantan.CardActivity" />
+        <activity android:name=".card_tantan.TanTanAvatarActivity" />
+        <activity android:name=".card_tantan.TanTanCardActivity" />
+        <activity android:name=".card_tantan.GalleryActivity" />
+        <activity android:name=".card_tantan.SwipeCardActivity" />
+        <activity android:name=".card_tantan.ZuiMeiCardActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -61,9 +61,11 @@ dependencies {
     //sweetalert
     implementation 'com.github.f0ris.sweetalert:library:1.6.2'
     // PictureSelector
-    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.5.6'
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.5.9'
     //glide
     implementation "com.github.bumptech.glide:glide:4.9.0"
     implementation 'com.ansen.shape:shape:1.2.2'
     implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.github.mcxtzhang:all-base-adapter:V1.8.0'
+
 }
