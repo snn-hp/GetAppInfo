@@ -18,6 +18,11 @@ public class RenRenCallback extends ItemTouchHelper.SimpleCallback {
     protected RecyclerView mRv;
     protected List mDatas;
     protected RecyclerView.Adapter mAdapter;
+    public OnSwipeListener onSwipeListener;
+
+    public void setOnSwipeListener(OnSwipeListener onSwipeListener) {
+        this.onSwipeListener = onSwipeListener;
+    }
 
     public RenRenCallback(RecyclerView rv, RecyclerView.Adapter adapter, List datas) {
         this(0, ItemTouchHelper.DOWN | ItemTouchHelper.UP | ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, rv, adapter, datas);

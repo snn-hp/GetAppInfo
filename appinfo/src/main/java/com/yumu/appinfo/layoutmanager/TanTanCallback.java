@@ -14,7 +14,7 @@ import java.util.List;
  * @author sunan
  * @date 2023/2/15 10:34
  */
-public class TanTanCallback extends RenRenCallback {
+public class TanTanCallback<T> extends RenRenCallback {
     private static final int MAX_ROTATION = 15;
 
     //考虑 探探垂直上下方向滑动，不删除卡片，
@@ -77,13 +77,26 @@ public class TanTanCallback extends RenRenCallback {
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-        super.onSwiped(viewHolder, direction);
         //如果不需要循环删除
-        Object remove = mDatas.remove(viewHolder.getLayoutPosition());
+        T remove = (T) mDatas.remove(viewHolder.getLayoutPosition());
         mAdapter.notifyDataSetChanged();
 
         //对rotate进行复位
         viewHolder.itemView.setRotation(0);
+
+        if (mAdapter.getItemCount() == 0) {
+            if (onSwipeListener != null) {
+                onSwipeListener.onSwipedClear();
+            }
+        }
+        if (mAdapter.getItemCount() == 5) {
+            if (onSwipeListener != null) {
+                onSwipeListener.getNextPage();
+            }
+        }
+        if (onSwipeListener != null) {
+            onSwipeListener.onSwiped(viewHolder, remove, direction);
+        }
 
         // Alpha 回调到外部去处理 可以给 viewHolder 控件做透明度处理
 //        if (viewHolder instanceof RecyclerView.ViewHolder) {

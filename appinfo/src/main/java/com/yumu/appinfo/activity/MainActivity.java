@@ -4,19 +4,29 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.yumu.appinfo.R;
+import com.yumu.appinfo.adapter.MenuAdapter;
+import com.yumu.appinfo.adapter.MyAlbumAdapter;
+import com.yumu.appinfo.bean.MainMenu;
+import com.yumu.appinfo.card_tantan.CardActivity;
 import com.yumu.appinfo.card_tantan.GalleryActivity;
+import com.yumu.appinfo.card_tantan.TanTanAvatarActivity;
 import com.yumu.appinfo.card_tantan.TanTanCardActivity;
 import com.yumu.appinfo.card_tantan.ZuiMeiCardActivity;
 import com.yumu.appinfo.dialog.RedPacketDialog;
 import com.yumu.appinfo.utils.StatusBarHelper;
 import com.yumu.appinfo.views.NumberAnimTextView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -25,36 +35,73 @@ import java.util.Random;
  * Created by sunan.
  */
 public class MainActivity extends AppCompatActivity {
-    private TextView tvGoBehavior, tvGetInfo, tvGoViewPager2;
     private NumberAnimTextView tv_number_text;
+    private RecyclerView recyclerview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tvGetInfo = findViewById(R.id.tv_get_info);
-        tvGoBehavior = findViewById(R.id.tv_go_behavior);
-        tvGoViewPager2 = findViewById(R.id.tv_go_viewpager2);
         tv_number_text = findViewById(R.id.tv_number_text);
-        addViewAction();
+        recyclerview = findViewById(R.id.recyclerview);
         initStatusBar();
+        initMenu();
+    }
+
+    private void initMenu() {
+        List<MainMenu> menuList = new ArrayList<>();
+        menuList.add(new MainMenu("应用签名", R.mipmap.ic_launcher, "get_app_info", "获取已安装应用签名信息"));
+        menuList.add(new MainMenu("沉浸式状态栏", R.mipmap.ic_launcher, "statusbar_helper", "沉浸式联动状态栏"));
+        menuList.add(new MainMenu("循环滚动", R.mipmap.ic_launcher, "recyclerview", "RecyclerView循环滚动"));
+        menuList.add(new MainMenu("ViewPage2", R.mipmap.ic_launcher, "viewpage2", "RecyclerView循环滚动"));
+        menuList.add(new MainMenu("卡片抽奖", R.mipmap.ic_launcher, "card_luck", "卡片抽奖"));
+        menuList.add(new MainMenu("定位", R.mipmap.ic_launcher, "location", "获取手机位置信息"));
+        menuList.add(new MainMenu("探探卡片_1", R.mipmap.ic_launcher, "tantan_card", "仿照探探实现切卡片，老版效果"));
+        menuList.add(new MainMenu("探探卡片_2", R.mipmap.ic_launcher, "tantan_card_new", "仿照探探实现切卡片，相比上一个，更丝滑点，更接近最新版本的探探"));
+        menuList.add(new MainMenu("探探头像效果", R.mipmap.ic_launcher, "tantan_avatar", "仿照探探 头像 实现"));
+        menuList.add(new MainMenu("画廊效果", R.mipmap.ic_launcher, "GalleryActivity", "图片画廊效果"));
+        menuList.add(new MainMenu("红包弹窗", R.mipmap.ic_launcher, "redpacket", "红包弹窗"));
+        menuList.add(new MainMenu("相册拍照", R.mipmap.ic_launcher, "takephoto", "相册拍照"));
+
+        recyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        MenuAdapter menuAdapter = new MenuAdapter(getApplicationContext(), menuList);
+        recyclerview.setAdapter(menuAdapter);
+        menuAdapter.setCallback(new MenuAdapter.MenuClickCallback() {
+            @Override
+            public void onItemClick(MainMenu mainMenu) {
+                if (TextUtils.equals(mainMenu.getType(), "get_app_info")) {
+                    gotoActivity(GetAppInfoActivity.class);
+                } else if (TextUtils.equals(mainMenu.getType(), "statusbar_helper")) {
+                    gotoActivity(TestBehaviorActivity.class, 0);
+                } else if (TextUtils.equals(mainMenu.getType(), "recyclerview")) {
+                    gotoActivity(TestBehaviorActivity.class, 2);
+                } else if (TextUtils.equals(mainMenu.getType(), "viewpage2")) {
+                    gotoActivity(TestBehaviorActivity.class, 1);
+                } else if (TextUtils.equals(mainMenu.getType(), "card_luck")) {
+                    gotoActivity(TestBehaviorActivity.class, 3);
+                } else if (TextUtils.equals(mainMenu.getType(), "location")) {
+                    gotoActivity(LocationTaskActivity.class);
+                } else if (TextUtils.equals(mainMenu.getType(), "tantan_card")) {
+                    gotoActivity(CardActivity.class);
+                } else if (TextUtils.equals(mainMenu.getType(), "tantan_avatar")) {
+                    gotoActivity(TanTanAvatarActivity.class);
+                } else if (TextUtils.equals(mainMenu.getType(), "redpacket")) {
+                    RedPacketDialog dialog = new RedPacketDialog(MainActivity.this);
+                    dialog.show();
+                } else if (TextUtils.equals(mainMenu.getType(), "takephoto")) {
+                    gotoActivity(MyAlbumActivity.class);
+                } else if (TextUtils.equals(mainMenu.getType(), "GalleryActivity")) {
+                    gotoActivity(GalleryActivity.class);
+                } else if (TextUtils.equals(mainMenu.getType(), "tantan_card_new")) {
+                    gotoActivity(TanTanCardActivity.class);
+                }
+            }
+        });
     }
 
     public void initStatusBar() {
         StatusBarHelper.setStatusBarDarkMode(this); //白字
         StatusBarHelper.setStatusBarColor(this, R.color.colorAccent, false);
-    }
-
-    public void addViewAction() {
-        tvGetInfo.setOnClickListener(onClickListener);
-        tvGoBehavior.setOnClickListener(onClickListener);
-        tvGoViewPager2.setOnClickListener(onClickListener);
-        findViewById(R.id.tv_go_cardview).setOnClickListener(onClickListener);
-        findViewById(R.id.tv_recyclerview).setOnClickListener(onClickListener);
-        findViewById(R.id.tv_location).setOnClickListener(onClickListener);
-        findViewById(R.id.tv_get_picture).setOnClickListener(onClickListener);
-        findViewById(R.id.tv_open_red_packet).setOnClickListener(onClickListener);
-        findViewById(R.id.tv_tantan_one).setOnClickListener(onClickListener);
     }
 
     @Override
@@ -79,36 +126,6 @@ public class MainActivity extends AppCompatActivity {
         mTimer.start();
     }
 
-
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            if (view.getId() == R.id.tv_get_info) {
-                gotoActivity(GetAppInfoActivity.class);
-            } else if (view.getId() == R.id.tv_go_behavior) {
-                gotoActivity(TestBehaviorActivity.class, 0);
-            } else if (view.getId() == R.id.tv_go_viewpager2) {
-                gotoActivity(TestBehaviorActivity.class, 1);
-            } else if (view.getId() == R.id.tv_recyclerview) {
-                gotoActivity(TestBehaviorActivity.class, 2);
-            } else if (view.getId() == R.id.tv_go_cardview) {
-                gotoActivity(TestBehaviorActivity.class, 3);
-            } else if (view.getId() == R.id.tv_location) {
-                gotoActivity(LocationTaskActivity.class, 3);
-            } else if (view.getId() == R.id.tv_get_picture) {
-                gotoActivity(MyAlbumActivity.class);
-            } else if (view.getId() == R.id.tv_open_red_packet) {
-                RedPacketDialog dialog = new RedPacketDialog(MainActivity.this);
-                dialog.show();
-            } else if (view.getId() == R.id.tv_tantan_one) {
-//                gotoActivity(CardActivity.class);
-//                gotoActivity(TanTanAvatarActivity.class);
-//                gotoActivity(TanTanCardActivity.class);
-                gotoActivity(GalleryActivity.class);
-//                gotoActivity(ZuiMeiCardActivity.class);
-            }
-        }
-    };
 
     public void gotoActivity(Class<? extends Activity> next) {
         gotoActivity(next, -1);

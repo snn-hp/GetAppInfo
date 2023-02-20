@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.yumu.appinfo.R;
 import com.yumu.appinfo.layoutmanager.CardConfig;
+import com.yumu.appinfo.layoutmanager.OnSwipeListener;
 import com.yumu.appinfo.layoutmanager.OverLayCardLayoutManager;
 import com.yumu.appinfo.layoutmanager.TanTanCallback;
 
@@ -44,11 +45,41 @@ public class TanTanCardActivity extends AppCompatActivity {
         CardConfig.initConfig(this);
         final TanTanCallback callback = new TanTanCallback(recyclerView, myAdapter, list);
 
+        callback.setOnSwipeListener(new OnSwipeListener() {
+            @Override
+            public void onSwiping(RecyclerView.ViewHolder viewHolder, float ratio, int direction) {
+
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, Object o, int direction) {
+            }
+
+            @Override
+            public void onSwipedClear() {
+
+            }
+
+            @Override
+            public void getNextPage() {
+                initData();//这里有个问题就是 滑动移除 剩余的 和 新加进去的 索引 notifyDataSetChanged 之后 剩余的不在最上面，简单处理一下就好了（可以把更新后的数据倒序）
+                myAdapter.notifyDataSetChanged();
+            }
+        });
+
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
         itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
     private void initData() {
+        list.add(R.mipmap.img_avatar_01);
+        list.add(R.mipmap.img_avatar_02);
+        list.add(R.mipmap.img_avatar_03);
+        list.add(R.mipmap.img_avatar_04);
+        list.add(R.mipmap.img_avatar_05);
+        list.add(R.mipmap.img_avatar_06);
+        list.add(R.mipmap.img_avatar_07);
+
         list.add(R.mipmap.img_avatar_01);
         list.add(R.mipmap.img_avatar_02);
         list.add(R.mipmap.img_avatar_03);
