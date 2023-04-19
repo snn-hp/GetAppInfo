@@ -27,7 +27,7 @@ import com.yumu.appinfo.utils.StatusBarHelper;
  * Time :  14:26.
  * Created by sunan.
  */
-public class TestBehaviorActivity extends AppCompatActivity {
+public class TestBehaviorActivity extends BaseActivity {
     private TextView tvHome, tvMailbox, tvPerson, tvDiscovery;
     private DiscoveryFragment discoveryFragment;
     private HomeFragment homeFragment;

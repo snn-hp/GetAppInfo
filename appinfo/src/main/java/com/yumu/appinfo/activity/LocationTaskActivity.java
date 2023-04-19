@@ -25,7 +25,7 @@ import java.util.List;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 
-public class LocationTaskActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
+public class LocationTaskActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks {
     private static final String LOG_TAG = "snn";
     private GeocodingManager siLoManager; //定位获取经纬度，包括LocationManager、基站地位
     private ReverseGeocodingManager reGeManager; //反地理编码的manager，包括google反地理、高德反地理、百度反地理、腾讯反地理

@@ -5,25 +5,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.yumu.appinfo.R;
 import com.yumu.appinfo.adapter.MenuAdapter;
-import com.yumu.appinfo.adapter.MyAlbumAdapter;
 import com.yumu.appinfo.bean.MainMenu;
 import com.yumu.appinfo.card_tantan.CardActivity;
 import com.yumu.appinfo.card_tantan.GalleryActivity;
 import com.yumu.appinfo.card_tantan.TanTanAvatarActivity;
 import com.yumu.appinfo.card_tantan.TanTanCardActivity;
-import com.yumu.appinfo.card_tantan.ZuiMeiCardActivity;
 import com.yumu.appinfo.dialog.RedPacketDialog;
 import com.yumu.appinfo.utils.StatusBarHelper;
 import com.yumu.appinfo.views.NumberAnimTextView;
+import com.yumu.appinfo.views.AnimDialogView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +34,11 @@ import java.util.Random;
  * Time :  15:39.
  * Created by sunan.
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private NumberAnimTextView tv_number_text;
     private RecyclerView recyclerview;
+    private ImageView tv_btn;
+    private AnimDialogView pop_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +46,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         tv_number_text = findViewById(R.id.tv_number_text);
         recyclerview = findViewById(R.id.recyclerview);
+        pop_view = findViewById(R.id.pop_view);
+        tv_btn = findViewById(R.id.tv_btn);
+        tv_btn.setOnClickListener(onClickListener);
         initStatusBar();
         initMenu();
+//        SyFloatView.getInstance(this).show();
     }
 
     private void initMenu() {
@@ -62,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
         menuList.add(new MainMenu("画廊效果", R.mipmap.ic_launcher, "GalleryActivity", "图片画廊效果"));
         menuList.add(new MainMenu("红包弹窗", R.mipmap.ic_launcher, "redpacket", "红包弹窗"));
         menuList.add(new MainMenu("相册拍照", R.mipmap.ic_launcher, "takephoto", "相册拍照"));
+        menuList.add(new MainMenu("相册拍照", R.mipmap.ic_launcher, "camera_kit", "相册拍照"));
+        menuList.add(new MainMenu("动画展示", R.mipmap.ic_launcher, "pop_anim", "动画展示"));
 
         recyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         MenuAdapter menuAdapter = new MenuAdapter(getApplicationContext(), menuList);
@@ -94,10 +102,39 @@ public class MainActivity extends AppCompatActivity {
                     gotoActivity(GalleryActivity.class);
                 } else if (TextUtils.equals(mainMenu.getType(), "tantan_card_new")) {
                     gotoActivity(TanTanCardActivity.class);
+                } else if (TextUtils.equals(mainMenu.getType(), "camera_kit")) {
+                    gotoActivity(CameraKitActivity.class);
+                } else if (TextUtils.equals(mainMenu.getType(), "pop_anim")) {
+                    gotoActivity(PopViewAnimActivity.class);
                 }
             }
         });
     }
+
+
+    private boolean isexplan;
+
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            if (pop_view.findViewById(R.id.imageView) == null) {
+                ImageView imageView = new ImageView(getApplicationContext());
+                imageView.setId(R.id.imageView);
+                FrameLayout.LayoutParams layoutParam = new FrameLayout.LayoutParams(500, 500);
+                layoutParam.gravity = Gravity.CENTER;
+                imageView.setImageResource(R.mipmap.bg_launcher_bottom_icon);
+                pop_view.addView(imageView, layoutParam);
+            }
+
+            if (isexplan) {
+                pop_view.endAnimation(v);
+            } else {
+                pop_view.startAnimation(v);
+            }
+            isexplan = !isexplan;
+        }
+    };
 
     public void initStatusBar() {
         StatusBarHelper.setStatusBarDarkMode(this); //白字

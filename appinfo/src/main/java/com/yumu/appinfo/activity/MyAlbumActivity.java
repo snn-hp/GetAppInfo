@@ -29,7 +29,7 @@ import java.util.List;
 
 import pub.devrel.easypermissions.EasyPermissions;
 
-public class MyAlbumActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
+public class MyAlbumActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks {
     protected RecyclerView recyclerView;
     protected MyAlbumAdapter adapter;
     private List<Album> albumList;

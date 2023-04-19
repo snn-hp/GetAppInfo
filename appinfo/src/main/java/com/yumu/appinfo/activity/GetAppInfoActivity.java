@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class GetAppInfoActivity extends AppCompatActivity {
+public class GetAppInfoActivity extends BaseActivity {
     private TextView tvAppInfo, tvGetInfo, tvAppNum, tvSearch;
     private List<APPInfo> appInfoList;
     private List<APPInfo> sysInfoList;

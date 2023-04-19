@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/FullTheme"
         tools:replace="android:icon">
-        <activity android:name="com.yumu.appinfo.activity.MainActivity">
+
+        <activity
+            android:name="com.yumu.appinfo.activity.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,10 +26,14 @@
         </activity>
 
 
+<!--        <activity android:name="com.yumu.appinfo.activity.MainActivity"/>-->
+
+        <activity android:name=".activity.PopViewAnimActivity" />
         <activity android:name=".activity.GetAppInfoActivity" />
         <activity android:name=".activity.TestBehaviorActivity" />
         <activity android:name=".activity.LocationTaskActivity" />
         <activity android:name=".activity.MyAlbumActivity" />
+        <activity android:name=".activity.CameraKitActivity" />
         <activity android:name=".card_tantan.CardActivity" />
         <activity android:name=".card_tantan.TanTanAvatarActivity" />
         <activity android:name=".card_tantan.TanTanCardActivity" />

@@ -12,6 +12,12 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+
+    <!--     方案一  冷启动   解决刚启动白屏问题 并且 是秒开 时间更慢 点击图标是立即打开视觉效果 （需要去掉启动页 xml 里的背景图） -->
+    <style name="AppStartTheme" parent="FullTheme">
+        <item name="android:windowBackground">@drawable/draw_launch</item>
+    </style>
+
     <style name="base_dialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>

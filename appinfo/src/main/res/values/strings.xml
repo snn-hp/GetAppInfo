@@ -9,5 +9,10 @@
     <string name="bye_burger_title_behavior">com.yumu.appinfo.byeburgernavigationview.ByeBurgerTitleBehavior</string>
     <string name="bye_burger_behavior">com.yumu.appinfo.byeburgernavigationview.ByeBurgerBehavior</string>
     <string name="app_bar_layout_behavior">com.yumu.appinfo.byeburgernavigationview.AppBarLayoutOverScrollViewBehavior</string>
+    <string name="about_dialog_title">About</string>
+    <string name="about_dialog_message">CameraKit is open source software distributed under the MIT license.\n\nFor more details visit www.camerakit.website/.</string>
+
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Close Drawer</string>
 
 </resources>
