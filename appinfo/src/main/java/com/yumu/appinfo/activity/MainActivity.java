@@ -17,7 +17,6 @@ import com.yumu.appinfo.R;
 import com.yumu.appinfo.adapter.MenuAdapter;
 import com.yumu.appinfo.bean.MainMenu;
 import com.yumu.appinfo.card_tantan.CardActivity;
-import com.yumu.appinfo.card_tantan.GalleryActivity;
 import com.yumu.appinfo.card_tantan.TanTanAvatarActivity;
 import com.yumu.appinfo.card_tantan.TanTanCardActivity;
 import com.yumu.appinfo.dialog.RedPacketDialog;
@@ -56,20 +55,21 @@ public class MainActivity extends BaseActivity {
 
     private void initMenu() {
         List<MainMenu> menuList = new ArrayList<>();
-        menuList.add(new MainMenu("应用签名", R.mipmap.ic_launcher, "get_app_info", "获取已安装应用签名信息"));
-        menuList.add(new MainMenu("沉浸式状态栏", R.mipmap.ic_launcher, "statusbar_helper", "沉浸式联动状态栏"));
-        menuList.add(new MainMenu("循环滚动", R.mipmap.ic_launcher, "recyclerview", "RecyclerView循环滚动"));
-        menuList.add(new MainMenu("ViewPage2", R.mipmap.ic_launcher, "viewpage2", "RecyclerView循环滚动"));
-        menuList.add(new MainMenu("卡片抽奖", R.mipmap.ic_launcher, "card_luck", "卡片抽奖"));
-        menuList.add(new MainMenu("定位", R.mipmap.ic_launcher, "location", "获取手机位置信息"));
-        menuList.add(new MainMenu("探探卡片_1", R.mipmap.ic_launcher, "tantan_card", "仿照探探实现切卡片，老版效果"));
-        menuList.add(new MainMenu("探探卡片_2", R.mipmap.ic_launcher, "tantan_card_new", "仿照探探实现切卡片，相比上一个，更丝滑点，更接近最新版本的探探"));
-        menuList.add(new MainMenu("探探头像效果", R.mipmap.ic_launcher, "tantan_avatar", "仿照探探 头像 实现"));
-        menuList.add(new MainMenu("画廊效果", R.mipmap.ic_launcher, "GalleryActivity", "图片画廊效果"));
-        menuList.add(new MainMenu("红包弹窗", R.mipmap.ic_launcher, "redpacket", "红包弹窗"));
-        menuList.add(new MainMenu("相册拍照", R.mipmap.ic_launcher, "takephoto", "相册拍照"));
-        menuList.add(new MainMenu("相册拍照", R.mipmap.ic_launcher, "camera_kit", "相册拍照"));
-        menuList.add(new MainMenu("动画展示", R.mipmap.ic_launcher, "pop_anim", "动画展示"));
+        menuList.add(new MainMenu("应用签名", R.mipmap.icon_main_menu, "get_app_info", "获取已安装应用签名信息"));
+        menuList.add(new MainMenu("沉浸式状态栏", R.mipmap.icon_main_menu, "statusbar_helper", "沉浸式联动状态栏"));
+        menuList.add(new MainMenu("循环滚动", R.mipmap.icon_main_menu, "recyclerview", "RecyclerView循环滚动"));
+        menuList.add(new MainMenu("ViewPage2", R.mipmap.icon_main_menu, "viewpage2", "RecyclerView循环滚动"));
+        menuList.add(new MainMenu("卡片抽奖", R.mipmap.icon_main_menu, "card_luck", "卡片抽奖"));
+        menuList.add(new MainMenu("定位", R.mipmap.icon_main_menu, "location", "获取手机位置信息"));
+        menuList.add(new MainMenu("探探卡片_1", R.mipmap.icon_main_menu, "tantan_card", "仿照探探实现切卡片，老版效果"));
+        menuList.add(new MainMenu("探探卡片_2", R.mipmap.icon_main_menu, "tantan_card_new", "仿照探探实现切卡片，相比上一个，更丝滑点，更接近最新版本的探探"));
+        menuList.add(new MainMenu("探探头像效果", R.mipmap.icon_main_menu, "tantan_avatar", "仿照探探 头像 实现"));
+        menuList.add(new MainMenu("画廊效果", R.mipmap.icon_main_menu, "GalleryActivity", "图片画廊效果"));
+        menuList.add(new MainMenu("红包弹窗", R.mipmap.icon_main_menu, "redpacket", "红包弹窗"));
+        menuList.add(new MainMenu("相册拍照", R.mipmap.icon_main_menu, "takephoto", "相册拍照"));
+        menuList.add(new MainMenu("相册拍照", R.mipmap.icon_main_menu, "camera_kit", "相册拍照"));
+        menuList.add(new MainMenu("动画展示", R.mipmap.icon_main_menu, "pop_anim", "动画展示"));
+        menuList.add(new MainMenu("viewPager2 画廊 展示", R.mipmap.icon_main_menu, "gallery", "viewPager2 画廊 展示"));
 
         recyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         MenuAdapter menuAdapter = new MenuAdapter(getApplicationContext(), menuList);
@@ -99,13 +99,15 @@ public class MainActivity extends BaseActivity {
                 } else if (TextUtils.equals(mainMenu.getType(), "takephoto")) {
                     gotoActivity(MyAlbumActivity.class);
                 } else if (TextUtils.equals(mainMenu.getType(), "GalleryActivity")) {
-                    gotoActivity(GalleryActivity.class);
+                    gotoActivity(com.yumu.appinfo.card_tantan.GalleryActivity.class);
                 } else if (TextUtils.equals(mainMenu.getType(), "tantan_card_new")) {
                     gotoActivity(TanTanCardActivity.class);
                 } else if (TextUtils.equals(mainMenu.getType(), "camera_kit")) {
                     gotoActivity(CameraKitActivity.class);
                 } else if (TextUtils.equals(mainMenu.getType(), "pop_anim")) {
                     gotoActivity(PopViewAnimActivity.class);
+                } else if (TextUtils.equals(mainMenu.getType(), "gallery")) {
+                    gotoActivity(GalleryActivity.class);
                 }
             }
         });

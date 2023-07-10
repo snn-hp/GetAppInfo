@@ -7,10 +7,12 @@
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/iv_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="5dp"
         android:scaleType="centerCrop"
-        android:src="@mipmap/ic_launcher"
+        android:src="@mipmap/icon_main_menu"
         app:riv_corner_radius="5dp"
         app:riv_oval="false" />
 
@@ -19,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/iv_image"
         android:gravity="center_vertical"
         android:text="标题"
@@ -39,9 +42,9 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_below="@+id/iv_image"
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="3dp"
-        android:background="@color/title_color" />
+        android:layout_below="@+id/tv_description"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/gray_btn_bg_color" />
 
 </RelativeLayout>

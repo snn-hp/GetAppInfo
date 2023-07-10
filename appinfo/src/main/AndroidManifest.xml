@@ -34,6 +34,7 @@
         <activity android:name=".activity.LocationTaskActivity" />
         <activity android:name=".activity.MyAlbumActivity" />
         <activity android:name=".activity.CameraKitActivity" />
+        <activity android:name=".activity.GalleryActivity" />
         <activity android:name=".card_tantan.CardActivity" />
         <activity android:name=".card_tantan.TanTanAvatarActivity" />
         <activity android:name=".card_tantan.TanTanCardActivity" />

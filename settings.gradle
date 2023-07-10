@@ -1,1 +1,1 @@
-include ':appinfo','FlycoTabLayout_Lib','simplelocation'
+include ':appinfo','FlycoTabLayout_Lib','simplelocation','library'
