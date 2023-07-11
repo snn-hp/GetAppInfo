@@ -50,7 +50,6 @@ public class MainActivity extends BaseActivity {
         tv_btn.setOnClickListener(onClickListener);
         initStatusBar();
         initMenu();
-//        SyFloatView.getInstance(this).show();
     }
 
     private void initMenu() {

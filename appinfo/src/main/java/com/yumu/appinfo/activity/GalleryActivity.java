@@ -1,21 +1,14 @@
 package com.yumu.appinfo.activity;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
+import androidx.viewpager.widget.ViewPager;
 
-import com.aohanyao.transformer.library.conf.CardPageTransformer;
-import com.aohanyao.transformer.library.conf.OnPageTransformerListener;
-import com.aohanyao.transformer.library.conf.PageTransformerConfig;
 import com.yumu.appinfo.R;
-import com.yumu.appinfo.fragment.EmptyFragment;
+import com.yumu.appinfo.bean.Album;
+import com.yumu.appinfo.transform.CardOverlayAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +17,8 @@ import java.util.List;
  * 自定义画廊效果
  */
 public class GalleryActivity extends AppCompatActivity {
-    private ViewPager2 vpMain;
-    private BaseFragmentPagerAdapter mAdapter;
-    private List<Fragment> mFragments;
+    private ViewPager vpMain, vpMain1, vpMain2, vpMain3;
+    private List<Album> albumList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,82 +26,41 @@ public class GalleryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vertical);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        mFragments = getFragments();
-        vpMain.setOffscreenPageLimit(mFragments.size());
-        initPager(PageTransformerConfig.BOTTOM);
+        vpMain = findViewById(R.id.vp_main);
+        vpMain1 = findViewById(R.id.vp_main_1);
+        vpMain2 = findViewById(R.id.vp_main_2);
+        vpMain3 = findViewById(R.id.vp_main_3);
+
+        initPager(vpMain,"OverlayTransformerLan2");
+        initPager(vpMain1,"");
+        initPager(vpMain2,"");
+        initPager(vpMain3,"");
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.view_menu, menu);
-        return true;
+    private void initPager(ViewPager viewPager,String transformer) {
+        intiData();
+        viewPager.setOffscreenPageLimit(albumList.size());
+        CardOverlayAdapter pagerAdapter = new CardOverlayAdapter(GalleryActivity.this);
+        pagerAdapter.setImgUrlsAndBindViewPager(viewPager, albumList, 3,transformer);
+        viewPager.setAdapter(pagerAdapter);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_top:
-                initPager(PageTransformerConfig.TOP);
-                break;
-            case R.id.action_top_left:
-                initPager(PageTransformerConfig.TOP_LEFT);
-                break;
-            case R.id.action_top_right:
-                initPager(PageTransformerConfig.TOP_RIGHT);
-                break;
-            case R.id.action_bottom:
-                initPager(PageTransformerConfig.BOTTOM);
-                break;
-            case R.id.action_bottom_left:
-                initPager(PageTransformerConfig.BOTTOM_LEFT);
-                break;
-            case R.id.action_bottom_right:
-                initPager(PageTransformerConfig.BOTTOM_RIGHT);
-                break;
-            case R.id.action_right:
-                initPager(PageTransformerConfig.RIGHT);
-                break;
-            case R.id.action_Left:
-                initPager(PageTransformerConfig.LEFT);
-                break;
+    private void intiData() {
+        if (albumList == null) {
+            albumList = new ArrayList<>();
         }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
-    private void initPager(@PageTransformerConfig.ViewType int mViewType) {
-        vpMain.setPageTransformer(CardPageTransformer.getBuild()//建造者模式
-                // .addAnimationType(PageTransformerConfig.ROTATION)//默认动画  旋转  当然 也可以一次性添加两个  后续会增加更多动画
-//                .setRotation(-45)//旋转角度
-                .setViewType(mViewType)
-                .setOnPageTransformerListener(new OnPageTransformerListener() {
-                    @Override
-                    public void onPageTransformerListener(View page, float position) {
-                        //你也可以在这里对 page 实行自定义动画
-                    }
-                })
-                .setTranslationOffset(40)
-                .setScaleOffset(80)
-                .create());
-        //创建适配器
-        mAdapter = new BaseFragmentPagerAdapter(this, mFragments);
-        vpMain.setAdapter(mAdapter);
-    }
-
-    /**
-     * 模拟创建数据
-     *
-     * @return
-     */
-    @NonNull
-    private List<Fragment> getFragments() {
-        vpMain = (ViewPager2) findViewById(R.id.vp_main);
-        List<Fragment> mFragments = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            mFragments.add(EmptyFragment.getInstance(i + ""));
+        if (albumList.isEmpty()) {
+            albumList.add(new Album("https://img1.baidu.com/it/u=2278717026,2923133725&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=665"));
+            albumList.add(new Album("https://img1.baidu.com/it/u=2555904807,2390319494&fm=253&fmt=auto&app=138&f=JPEG?w=333&h=500"));
+            albumList.add(new Album("https://img1.baidu.com/it/u=640593135,209279600&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500"));
+            albumList.add(new Album("https://img0.baidu.com/it/u=233196052,109563712&fm=253&fmt=auto&app=120&f=JPEG?w=1422&h=800"));
+            albumList.add(new Album("https://img1.baidu.com/it/u=2805604174,586521884&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500"));
+            albumList.add(new Album("https://img1.baidu.com/it/u=1649094455,2789980245&fm=253&fmt=auto&app=120&f=JPEG?w=1422&h=800"));
+            albumList.add(new Album("https://img0.baidu.com/it/u=732498250,1887863602&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500"));
+            albumList.add(new Album("https://img0.baidu.com/it/u=1405889028,2371985328&fm=253&fmt=auto&app=138&f=JPEG?w=750&h=500"));
+            albumList.add(new Album("https://img2.baidu.com/it/u=1229150163,1065025162&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=1163"));
         }
-        return mFragments;
     }
+
 }

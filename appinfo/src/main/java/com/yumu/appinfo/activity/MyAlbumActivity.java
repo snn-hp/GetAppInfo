@@ -142,7 +142,6 @@ public class MyAlbumActivity extends BaseActivity implements EasyPermissions.Per
                 album.setPreview_url(path);
                 album.setSelected(true);
                 album.setDuration(localMedia.getDuration());
-//                album.setType(Utils.getMimeTypeValue(localMedia.getMimeType()));
                 albumList.add(album);
 
                 selectMediaList.add(localMedia);
