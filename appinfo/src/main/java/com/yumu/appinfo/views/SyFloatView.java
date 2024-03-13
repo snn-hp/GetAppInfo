@@ -69,10 +69,8 @@ public class SyFloatView implements LifecycleEventObserver {
     @Override
     public void onStateChanged(@NonNull LifecycleOwner source, @NonNull Lifecycle.Event event) {
         if (event == Lifecycle.Event.ON_PAUSE) {
-            Log.d("snn", "ON_PAUSE");
             close();
         } else if (event == Lifecycle.Event.ON_RESUME) {
-            Log.d("snn", "ON_RESUME");
             show();
         }
     }
@@ -212,7 +210,6 @@ public class SyFloatView implements LifecycleEventObserver {
      */
     public void show() {
         if (!IS_SHOW_BALL) {
-            Log.d("snn", "111show");
             mGetTokenRunnable = new GetTokenRunnable(((Activity) mContext));
             mHandler.postDelayed(mGetTokenRunnable, 500);
             IS_SHOW_BALL = true;
@@ -224,12 +221,10 @@ public class SyFloatView implements LifecycleEventObserver {
      */
     public void close() {
         try {
-            Log.d("snn", "111close");
             if (IS_SHOW_BALL) {
                 mWindowManager.removeViewImmediate(mPopView);
                 if (null != mListener) mListener.onClose();
                 IS_SHOW_BALL = false;
-                Log.d("snn", "222close");
             }
         } catch (Exception e) {
             Log.d(TAG, e.toString());
@@ -394,7 +389,6 @@ public class SyFloatView implements LifecycleEventObserver {
                     if (mWindowManager != null && mPopView != null && mLayoutParams != null)
                         mWindowManager.addView(mPopView, mLayoutParams);
                     mActivity = null;
-                    Log.d("snn", "GetTokenRunnable 添加OK");
                     return;
                 } catch (Exception e) {
                 }

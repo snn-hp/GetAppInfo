@@ -19,6 +19,7 @@ import com.yumu.appinfo.R;
 import com.yumu.appinfo.fragment.HomeFragment;
 import com.yumu.appinfo.fragment.DiscoveryFragment;
 import com.yumu.appinfo.fragment.MailboxFragment;
+import com.yumu.appinfo.fragment.NewHomeFragment;
 import com.yumu.appinfo.fragment.PersonFragment;
 import com.yumu.appinfo.utils.StatusBarHelper;
 
@@ -30,7 +31,8 @@ import com.yumu.appinfo.utils.StatusBarHelper;
 public class TestBehaviorActivity extends BaseActivity {
     private TextView tvHome, tvMailbox, tvPerson, tvDiscovery;
     private DiscoveryFragment discoveryFragment;
-    private HomeFragment homeFragment;
+//    private HomeFragment homeFragment;
+    private NewHomeFragment homeFragment;
     private MailboxFragment mailboxFragment;
     private PersonFragment personFragment;
     private View llbottom;
@@ -47,7 +49,7 @@ public class TestBehaviorActivity extends BaseActivity {
         llbottom = findViewById(R.id.ll_bottom);
 
         tvHome.setSelected(true);
-        homeFragment = new HomeFragment();
+        homeFragment = new NewHomeFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.main_container, homeFragment).commit();
         tvDiscovery = findViewById(R.id.tv_discovery);
         tvMailbox = findViewById(R.id.tv_mailbox);
@@ -112,7 +114,7 @@ public class TestBehaviorActivity extends BaseActivity {
         hideFragments(transaction);//隐藏所有fragment
         if (resId == R.id.tv_home) {//首页
             if (homeFragment == null) {//如果为空先添加进来.不为空直接显示
-                homeFragment = new HomeFragment();
+                homeFragment = new NewHomeFragment();
                 transaction.add(R.id.main_container, homeFragment);
             } else {
                 transaction.show(homeFragment);

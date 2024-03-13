@@ -18,6 +18,7 @@ public class APPInfo {
     public String sha1info = "";//sha1信息
     public String sha256 = "";//sha256信息
     public String md5info = "";//md5签名
+    public String md5MainInfo = "";//md5签名
     public int versionCode = 0;
     public Drawable appIcon = null;
 
@@ -106,6 +107,14 @@ public class APPInfo {
         this.md5info = md5info;
     }
 
+    public String getMd5MainInfo() {
+        return md5MainInfo;
+    }
+
+    public void setMd5MainInfo(String md5MainInfo) {
+        this.md5MainInfo = md5MainInfo;
+    }
+
     @Override
     public String toString() {
         return "APPInfo{" +
@@ -117,6 +126,7 @@ public class APPInfo {
                 ", sha1info='" + sha1info + '\'' +
                 ", sha256='" + sha256 + '\'' +
                 ", md5info='" + md5info + '\'' +
+                ", md5MainInfo='" + md5MainInfo + '\'' +
                 ", versionCode=" + versionCode +
                 ", appIcon=" + appIcon +
                 '}';

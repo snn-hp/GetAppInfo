@@ -56,6 +56,7 @@ public class AppInfoAdapter extends RecyclerView.Adapter<AppInfoAdapter.ViewHold
         holder.tvAppFirstInstallTimeValue.setText(appInfo.getFirstinstallation());
         holder.tvAppLastInstallTimeValue.setText(appInfo.getLastupdate());
         holder.tvAppMd5SignatureValue.setText(appInfo.getMd5info());
+        holder.tv_app_signature_value.setText(appInfo.getMd5MainInfo());
         holder.tvAppSha1SignatureValue.setText(appInfo.getSha1info());
         holder.tvAppSha256SignatureValue.setText(appInfo.getSha256());
 
@@ -92,7 +93,13 @@ public class AppInfoAdapter extends RecyclerView.Adapter<AppInfoAdapter.ViewHold
                 Toast.makeText(context, "APP包名 已复制", Toast.LENGTH_SHORT).show();
             }
         });
-
+        holder.tv_app_signature_value.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utils.copyString(context, holder.tv_app_signature_value.getText().toString());
+                Toast.makeText(context, "MD5签名 已复制", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -105,7 +112,7 @@ public class AppInfoAdapter extends RecyclerView.Adapter<AppInfoAdapter.ViewHold
 
         private TextView tvAppNameValue, tvAppPackageNameValue, tvAppVersionNameValue,
                 tvAppVersionCodeValue, tvAppFirstInstallTimeValue, tvAppLastInstallTimeValue,
-                tvAppMd5SignatureValue, tvAppSha1SignatureValue, tvAppSha256SignatureValue, tvAppPosition;
+                tvAppMd5SignatureValue, tvAppSha1SignatureValue, tvAppSha256SignatureValue, tvAppPosition,tv_app_signature_value;
 
         public ViewHolder(View view) {
             super(view);
@@ -120,6 +127,7 @@ public class AppInfoAdapter extends RecyclerView.Adapter<AppInfoAdapter.ViewHold
             tvAppMd5SignatureValue = view.findViewById(R.id.tv_app_md5_signature_value);
             tvAppSha1SignatureValue = view.findViewById(R.id.tv_app_sha1_signature_value);
             tvAppSha256SignatureValue = view.findViewById(R.id.tv_app_sha256_signature_value);
+            tv_app_signature_value = view.findViewById(R.id.tv_app_signature_value);
 
         }
 
