@@ -32,7 +32,7 @@
         </activity>
 
 
-<!--        <activity android:name="com.yumu.appinfo.activity.MainActivity"/>-->
+        <!--        <activity android:name="com.yumu.appinfo.activity.MainActivity"/>-->
 
         <activity android:name=".activity.PopViewAnimActivity" />
         <activity android:name=".activity.GetAppInfoActivity" />
@@ -41,6 +41,13 @@
         <activity android:name=".activity.MyAlbumActivity" />
         <activity android:name=".activity.CameraKitActivity" />
         <activity android:name=".activity.GalleryActivity" />
+        <activity android:name=".floatbtn.FloatingBtnActivity" />
+        <activity android:name=".floatbtn.FBAActivity" />
+        <activity android:name=".floatbtn.MenuWithCustomActionButtonActivity" />
+        <activity android:name=".floatbtn.MenuInScrollViewActivity" />
+        <activity android:name=".floatbtn.MenuWithFABActivity" />
+        <activity android:name=".floatbtn.MenuWithCustomAnimationActivity" />
+
         <activity android:name=".card_tantan.CardActivity" />
         <activity android:name=".card_tantan.TanTanAvatarActivity" />
         <activity android:name=".card_tantan.TanTanCardActivity" />

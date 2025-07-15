@@ -1,1 +1,2 @@
-include ':appinfo','FlycoTabLayout_Lib','simplelocation','library','indicatorlib'
+include ':appinfo','FlycoTabLayout_Lib','simplelocation','library'
+include ':fablibrary'

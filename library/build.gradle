@@ -1,14 +1,10 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
-
+    compileSdk rootProject.ext.compileSdk
     defaultConfig {
-        minSdkVersion 20
-        targetSdkVersion 29
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        minSdk rootProject.ext.minSdk
+        targetSdkVersion rootProject.ext.targetSdkVersion
     }
     buildTypes {
         release {
@@ -20,6 +16,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    implementation "androidx.appcompat:appcompat:$rootProject.ext.appCompatVersion"
+    implementation "androidx.viewpager2:viewpager2:$rootProject.ext.viewpager2Version"
 }

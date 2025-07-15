@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="radius" format="reference|dimension" />
+
     <declare-styleable name="RoundImageView">
-        <attr name="radius" format="reference|dimension" />
+        <attr name="radius" />
     </declare-styleable>
 
     <declare-styleable name="DraggableFrameLayout">
@@ -14,4 +16,16 @@
         </attr>
 
     </declare-styleable>
+
+    <attr name="position">
+        <enum name="left_top" value="0" />
+        <enum name="right_top" value="1" />
+        <enum name="left_bottom" value="2" />
+        <enum name="right_bottom" value="3" />
+    </attr>
+    <declare-styleable name="ArcMenu">
+        <attr name="position" />
+        <attr name="radius" />
+    </declare-styleable>
+
 </resources>

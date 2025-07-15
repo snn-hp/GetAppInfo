@@ -20,6 +20,7 @@ import com.yumu.appinfo.card_tantan.CardActivity;
 import com.yumu.appinfo.card_tantan.TanTanAvatarActivity;
 import com.yumu.appinfo.card_tantan.TanTanCardActivity;
 import com.yumu.appinfo.dialog.RedPacketDialog;
+import com.yumu.appinfo.floatbtn.FBAActivity;
 import com.yumu.appinfo.utils.StatusBarHelper;
 import com.yumu.appinfo.views.NumberAnimTextView;
 import com.yumu.appinfo.views.AnimDialogView;
@@ -69,6 +70,7 @@ public class MainActivity extends BaseActivity {
         menuList.add(new MainMenu("相册拍照", R.mipmap.icon_main_menu, "camera_kit", "相册拍照"));
         menuList.add(new MainMenu("动画展示", R.mipmap.icon_main_menu, "pop_anim", "动画展示"));
         menuList.add(new MainMenu("viewPager2 画廊 展示", R.mipmap.icon_main_menu, "gallery", "viewPager2 画廊 展示"));
+        menuList.add(new MainMenu("卫星菜单", R.mipmap.icon_main_menu, "floating_action_button", "卫星菜单demo"));
 
         recyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         MenuAdapter menuAdapter = new MenuAdapter(getApplicationContext(), menuList);
@@ -107,6 +109,8 @@ public class MainActivity extends BaseActivity {
                     gotoActivity(PopViewAnimActivity.class);
                 } else if (TextUtils.equals(mainMenu.getType(), "gallery")) {
                     gotoActivity(GalleryActivity.class);
+                } else if (TextUtils.equals(mainMenu.getType(), "floating_action_button")) {
+                    gotoActivity(FBAActivity.class);
                 }
             }
         });

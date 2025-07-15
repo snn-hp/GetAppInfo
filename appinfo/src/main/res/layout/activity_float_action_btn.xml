@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.yumu.appinfo.floatbtn.ArcMenu
+        android:id="@+id/arcMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:position="right_bottom"
+        app:radius="160dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginBottom="60dp"
+                android:src="@mipmap/icon_float_menu_center_open" />
+
+        </RelativeLayout>
+        <!-- 子菜单项 -->
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@mipmap/icon_float_menu_1"
+            android:tag="Camera" />
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@mipmap/icon_float_menu_2"
+            android:tag="Music" />
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@mipmap/icon_float_menu_1"
+            android:tag="Place" />
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@mipmap/icon_float_menu_2"
+            android:tag="Sleep" />
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@mipmap/icon_float_menu_1"
+            android:tag="Thought" />
+
+    </com.yumu.appinfo.floatbtn.ArcMenu>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
