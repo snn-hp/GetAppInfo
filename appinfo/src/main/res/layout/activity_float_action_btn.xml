@@ -13,20 +13,18 @@
         android:id="@+id/arcMenu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:endAngle="270"
+        app:mainBtnMarginBottom="170dp"
+        app:mainBtnMarginRight="150dp"
         app:position="right_bottom"
-        app:radius="160dp">
+        app:radius="40dp"
+        app:startAngle="90">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_marginBottom="60dp"
-                android:src="@mipmap/icon_float_menu_center_open" />
-
-        </RelativeLayout>
+        <ImageView
+            android:id="@+id/iv_main_btn"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@mipmap/icon_float_menu_center_open" />
         <!-- 子菜单项 -->
         <ImageView
             android:layout_width="45dp"

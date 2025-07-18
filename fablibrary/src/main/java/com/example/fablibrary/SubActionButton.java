@@ -15,37 +15,33 @@ import android.widget.FrameLayout;
  */
 public class SubActionButton extends FrameLayout {
 
-    public static final int THEME_LIGHT = 0;
-    public static final int THEME_DARK = 1;
-    public static final int THEME_LIGHTER = 2;
-    public static final int THEME_DARKER = 3;
+    public static final int THEME_LIGHT = 1;
+    public static final int THEME_DARK = 2;
+    public static final int THEME_LIGHTER = 3;
+    public static final int THEME_DARKER = 4;
 
     public SubActionButton(Context context, LayoutParams layoutParams, int theme, Drawable backgroundDrawable, View contentView, LayoutParams contentParams) {
         super(context);
         setLayoutParams(layoutParams);
         // If no custom backgroundDrawable is specified, use the background drawable of the theme.
-        if(backgroundDrawable == null) {
-            if(theme == THEME_LIGHT) {
+        if (backgroundDrawable == null) {
+            if (theme == THEME_LIGHT) {
                 backgroundDrawable = context.getResources().getDrawable(R.drawable.button_sub_action_selector);
-            }
-            else if(theme == THEME_DARK) {
+            } else if (theme == THEME_DARK) {
                 backgroundDrawable = context.getResources().getDrawable(R.drawable.button_sub_action_dark_selector);
-            }
-            else if(theme == THEME_LIGHTER) {
+            } else if (theme == THEME_LIGHTER) {
                 backgroundDrawable = context.getResources().getDrawable(R.drawable.button_action_selector);
-            }
-            else if(theme == THEME_DARKER) {
+            } else if (theme == THEME_DARKER) {
                 backgroundDrawable = context.getResources().getDrawable(R.drawable.button_action_dark_selector);
+            } else {
+                //不抛出异常，允许不指定
+//                throw new RuntimeException("Unknown SubActionButton theme: " + theme);
             }
-            else {
-                throw new RuntimeException("Unknown SubActionButton theme: " + theme);
-            }
-        }
-        else {
+        } else {
             backgroundDrawable = backgroundDrawable.mutate().getConstantState().newDrawable();
         }
         setBackgroundResource(backgroundDrawable);
-        if(contentView != null) {
+        if (contentView != null) {
             setContentView(contentView, contentParams);
         }
         setClickable(true);
@@ -53,11 +49,12 @@ public class SubActionButton extends FrameLayout {
 
     /**
      * Sets a content view with custom LayoutParams that will be displayed inside this SubActionButton.
+     *
      * @param contentView
      * @param params
      */
     public void setContentView(View contentView, LayoutParams params) {
-        if(params == null) {
+        if (params == null) {
             params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, Gravity.CENTER);
             final int margin = getResources().getDimensionPixelSize(R.dimen.sub_action_button_content_margin);
             params.setMargins(margin, margin, margin, margin);
@@ -69,6 +66,7 @@ public class SubActionButton extends FrameLayout {
 
     /**
      * Sets a content view with default LayoutParams
+     *
      * @param contentView
      */
     public void setContentView(View contentView) {
@@ -78,8 +76,7 @@ public class SubActionButton extends FrameLayout {
     private void setBackgroundResource(Drawable drawable) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             setBackground(drawable);
-        }
-        else {
+        } else {
             setBackgroundDrawable(drawable);
         }
     }
@@ -94,6 +91,7 @@ public class SubActionButton extends FrameLayout {
         private int theme;
         private Drawable backgroundDrawable;
         private View contentView;
+        private String tag;
         private LayoutParams contentParams;
 
         public Builder(Context context) {
@@ -103,7 +101,8 @@ public class SubActionButton extends FrameLayout {
             int size = context.getResources().getDimensionPixelSize(R.dimen.sub_action_button_size);
             LayoutParams params = new LayoutParams(size, size, Gravity.TOP | Gravity.LEFT);
             setLayoutParams(params);
-            setTheme(SubActionButton.THEME_LIGHT);
+            // 不指定默认主题
+//            setTheme(SubActionButton.THEME_LIGHT);
         }
 
         public Builder setLayoutParams(LayoutParams params) {
@@ -113,6 +112,11 @@ public class SubActionButton extends FrameLayout {
 
         public Builder setTheme(int theme) {
             this.theme = theme;
+            return this;
+        }
+
+        public Builder setTag(String tag) {
+            this.tag = tag;
             return this;
         }
 
@@ -132,13 +136,17 @@ public class SubActionButton extends FrameLayout {
             return this;
         }
 
+        public Builder setContentView(View contentView, LayoutParams contentParams, String tag) {
+            this.contentView = contentView;
+            this.tag = tag;
+            this.contentParams = contentParams;
+            return this;
+        }
+
         public SubActionButton build() {
-            return new SubActionButton(context,
-                    layoutParams,
-                    theme,
-                    backgroundDrawable,
-                    contentView,
-                    contentParams);
+            SubActionButton subActionButton = new SubActionButton(context, layoutParams, theme, backgroundDrawable, contentView, contentParams);
+            subActionButton.setTag(tag);
+            return subActionButton;
         }
     }
 }

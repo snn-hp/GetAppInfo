@@ -26,6 +26,13 @@
     <declare-styleable name="ArcMenu">
         <attr name="position" />
         <attr name="radius" />
+        <!-- 主按钮额外 margin -->
+        <attr name="mainBtnMarginLeft" format="dimension" />
+        <attr name="mainBtnMarginTop" format="dimension" />
+        <attr name="mainBtnMarginRight" format="dimension" />
+        <attr name="mainBtnMarginBottom" format="dimension" />
+        <attr name="startAngle" format="integer" />
+        <attr name="endAngle" format="integer" />
     </declare-styleable>
 
 </resources>
